@@ -31,7 +31,7 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
 
     list_unique_word = list(set(list_chain_no_punctuations))
 
-    print(list_unique_word)
+    print(list_unique_word, "oui")
 
 
     for word in list_unique_word:
