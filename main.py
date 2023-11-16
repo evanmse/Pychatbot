@@ -20,3 +20,8 @@ if __name__ == "__main__":
         with open('./speeches/Nomination_Chirac1.txt', 'r', encoding='utf-8') as file:
                 file_content = file.read()
                 print(score_TF(file_content))
+
+        # Test for lowerClean :
+        for name in list_of_files(directory, "txt"):
+                lowerClean(name)
+
