@@ -22,14 +22,14 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
     for i in range(list_chain_no_punctuations.count("")):   #Remove all the "" in the list
         list_chain_no_punctuations.remove("")
 
-    for k in range(list_chain_no_punctuations.count("\n")):
+    for k in range(list_chain_no_punctuations.count("\n")):  #Remove all the elements \n in the list
         list_chain_no_punctuations.remove("\n")
 
-    for element in range(len(list_chain_no_punctuations)):
+    for element in range(len(list_chain_no_punctuations)):  #Remove all the \n in words
         if "\n" in list_chain_no_punctuations[element]:
             list_chain_no_punctuations[element] = list_chain_no_punctuations[element].replace("\n", '')
 
-    list_unique_word = list(set(list_chain_no_punctuations))
+    list_unique_word = list(set(list_chain_no_punctuations))  #Remove all the duplications
 
     for word in list_unique_word:
         dictionnary[word] = list_chain_no_punctuations.count(word)   #Create the dictionnary
