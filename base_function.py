@@ -1,7 +1,7 @@
 import os
 import re
 
-directory = "./speeches"
+DIRECTORY = "./speeches"
 
 def list_of_files(directory, extension):  #Function that gives the list of files, Example : /speeches
     files_names = []
@@ -46,6 +46,6 @@ def clearFile():
     return
 
 def list_namePres():  #Function that displays the list of the names of the presidents without duplications(doublons)
-    list_file = list_of_files(directory, "txt")
+    list_file = list_of_files(DIRECTORY, "txt")
     president_names = [extractNameFile(filename) for filename in list_file]
     return list(set(president_names))
