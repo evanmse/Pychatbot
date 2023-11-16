@@ -1,5 +1,5 @@
 from base_function import *
-
+from tf_idf_functions import *
 
 if __name__ == "__main__":
         directory = "./speeches"
