@@ -11,3 +11,6 @@ if __name__ == "__main__":
 
         # Test for assocNamePres :
         print(assocNamePres(president_names[3]))
+
+        #Test for list_namePres :
+        print(list_namePres())
