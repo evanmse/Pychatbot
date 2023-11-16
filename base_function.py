@@ -28,7 +28,7 @@ def lowerClean():
 def clearFile():
     return
 
-def list_namePres():  #Function that displays the list of the names of the presidents without duplicatin(doublons)
+def list_namePres():  #Function that displays the list of the names of the presidents without duplications(doublons)
     list_file = list_of_files(directory, "txt")
     president_names = [extractNameFile(filename) for filename in list_file]
     return list(set(president_names))
