@@ -37,3 +37,7 @@ if __name__ == "__main__":
         print("### Test for function clearFile ### ")
         for name in list_of_files("./cleaned", "txt"):
                 clearFile(name)
+
+        # Test for score_IDF :
+        print("### Test for function score_IDF ### ")
+        score_IDF('./speeches')

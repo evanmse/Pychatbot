@@ -1,4 +1,5 @@
 import math
+import os
 
 directory = "./speeches"
 
@@ -30,5 +31,18 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
 
     return dictionnary
 
-def score_IDF():
-    pass
+def score_IDF(directory):
+
+    files_name = os.listdir(directory)
+    dictionnary = {}
+
+    for file in files_name:
+
+        full_path = os.path.join('./speeches', file)
+
+        with open(full_path, 'r', encoding='utf-8') as f:
+
+            content = f.read()
+
+            print(f"Contenu du fichier {file} : {content[:100]}")
+
