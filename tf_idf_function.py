@@ -27,12 +27,7 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
     for k in range(list_chain_no_punctuations.count("\n")):
         list_chain_no_punctuations.remove("\n")
 
-    print(list_chain_no_punctuations)
-
     list_unique_word = list(set(list_chain_no_punctuations))
-
-    print(list_unique_word, "oui")
-
 
     for word in list_unique_word:
         dictionnary[word] = list_chain_no_punctuations.count(word)   #Create the dictionnary
