@@ -1,15 +1,11 @@
-import os
-import re
-import string
+import math
 
 directory = "./speeches"
 
 def score_TF(strings_chain):  # Function that associates to each word how many times it appeared in a strings_chaine
 
-
-
     dictionnary = {}
-    punctuations = string.punctuation #A string that contains all the punctuations
+    punctuations = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~" #A string that contains all the punctuations
     mylist_words = []
 
     for caracter in strings_chain:
@@ -33,3 +29,6 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
         dictionnary[word] = list_chain_no_punctuations.count(word)   #Create the dictionnary
 
     return dictionnary
+
+def score_IDF():
+    pass

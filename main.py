@@ -23,10 +23,10 @@ if __name__ == "__main__":
         print(listNamePres(directory, "txt"))
 
         #Test for score_TF
-        #print("### Test for score_TF ### ")
-        #with open('./speeches/Nomination_Chirac1.txt', 'r', encoding='utf-8') as file:
-        #        file_content = file.read()
-        #        print(score_TF(file_content))
+        print("### Test for score_TF ### ")
+        with open('./speeches/Nomination_Chirac1.txt', 'r', encoding='utf-8') as file:
+              file_content = file.read()
+              print(score_TF(file_content))
 
         # Test for lowerClean :
         print("### Test for function lowerClean ### ")
