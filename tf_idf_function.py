@@ -49,5 +49,3 @@ def score_IDF(directory):
             content = f.read()
             print(score_TF(content))
 
-print(score_TF("\noui j'aime les am\nis"))
-
