@@ -57,7 +57,6 @@ def no_accents(string):  # Remove all the accents of a string
 
     list_without_accent = []
     for element in string:
-        list_without_accent.append(accents.get(element,
-                                               element))  # Go find the value of the key element if element is in accents. If not, it gives element.
+        list_without_accent.append(accents.get(element, element))  # Go find the value of the key element if element is in accents. If not, it gives element.
 
     return ''.join(list_without_accent)
