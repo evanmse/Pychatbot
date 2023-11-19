@@ -21,8 +21,12 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
     for i in range(list_chain_no_punctuations.count("")):   #Remove all the "" in the list
         list_chain_no_punctuations.remove("")
 
-    for k in range(list_chain_no_punctuations.count("\n")):
+    for k in range(list_chain_no_punctuations.count("\n")):     #Remove all the "\n" in the list
         list_chain_no_punctuations.remove("\n")
+
+    for j in range(len(list_chain_no_punctuations)):    #Remove "\n" in the each word of the list
+        if "\n" in list_chain_no_punctuations[j]:
+            list_chain_no_punctuations[j] = list_chain_no_punctuations[j].replace("\n", "")
 
     list_unique_word = list(set(list_chain_no_punctuations))
 
@@ -34,15 +38,16 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
 def score_IDF(directory):
 
     files_name = os.listdir(directory)
-    dictionnary = {}
+    dictionnary_IDF = {}
 
-    for file in files_name:
+    for file in files_name[1:]:
 
         full_path = os.path.join('./speeches', file)
 
         with open(full_path, 'r', encoding='utf-8') as f:
 
             content = f.read()
+            print(score_TF(content))
 
-            print(f"Contenu du fichier {file} : {content[:100]}")
+print(score_TF("\noui j'aime les am\nis"))
 
