@@ -1,11 +1,10 @@
 import math
-import os
 from base_function import *
 
 directory = "./speeches"
 
 
-def score_TF(strings_chain):  # Function that associates to each word how many times it appeared in a strings_chaine
+def score_TF(strings_chain):  # Function that associates to each word how many times it appeared in a string chain
 
     dictionnary = {}
     punctuations = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"  # A string that contains all the punctuations
@@ -45,7 +44,7 @@ def score_IDF(directory):
     files_name = os.listdir(directory)
     mylist = []
     mydict = {}
-    nb_document_word = 0
+    dictionnary_IDF = {}
 
     for file in files_name:         #Go through each file in the directory
         full_path = os.path.join('./speeches', file)    #Put in a variable the path of the file
@@ -55,23 +54,28 @@ def score_IDF(directory):
             dictionnary_file = score_TF(content)
             mylist = list(set(mylist + list(dictionnary_file.keys())))  #List containing all the words of all the files
 
-    for element in mylist:
+    for element in mylist:      #Creation of the dictionnary containing all the elements of mylist as keys
         mydict[element] = 0
-
-    print(mydict)
 
     for document in files_name:
         full_path2 = os.path.join('./speeches', document)
 
         with open(full_path2, 'r', encoding='utf-8') as f2:
             content = f2.read().lower()
+            content_dictionnary = score_TF(content)
 
-            for word in mylist:
-                if word in content:
+            for word in mylist:     #Add 1 to mydict[word] if the word is in the .txt file
+                if word in list(content_dictionnary.keys()):
                     mydict[word] += 1
 
-    print("mydict:  ", mydict)
 
+    for key in list(mydict.keys()):             #Calculate the log of the inversed of the proportion of documents containing a certain word
+        number_document = len(list_of_files('./speeches', '.txt'))
+        proportion_document_containing_word = mydict[key] / number_document
+        inversed_proportion_document_containing_word = 1/proportion_document_containing_word
+        dictionnary_IDF[key] = math.log(inversed_proportion_document_containing_word)
+
+    return dictionnary_IDF
 
 
 

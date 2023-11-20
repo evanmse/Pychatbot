@@ -40,4 +40,4 @@ if __name__ == "__main__":
 
         # Test for score_IDF :
         print("\n### Test for function score_IDF ### ")
-        score_IDF('./speeches')
+        print(score_IDF('./speeches'))
