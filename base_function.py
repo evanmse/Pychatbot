@@ -1,7 +1,5 @@
 import os
 
-
-
 def list_of_files(directory, extension):  # Function that gives the list of files, Example : /speeches
     files_names = []
 
