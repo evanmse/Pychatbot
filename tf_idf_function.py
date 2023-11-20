@@ -76,30 +76,3 @@ def score_IDF(directory):
         dictionnary_IDF[key] = math.log(inversed_proportion_document_containing_word)
 
     return dictionnary_IDF
-
-
-
-"""
-
-with open('./speeches/Nomination_Sarkozy.txt', 'r', encoding='utf-8') as f:
-    content = f.read().lower()
-    dictionnary_file = score_TF(content)
-    print(dictionnary_file.keys())
-    mylist = list(dictionnary_file.keys())  # List containing all the words of all the files
-    print("mylist : ", mylist)
-    if '' in mylist:
-        print("BREAK")
-"""
-
-"""
-def no_accents(string):  # Remove all the accents of a string
-    accents = {'à': 'a', 'â': 'a', 'ä': 'a', 'á': 'a', 'ã': 'a', 'å': 'a', 'ā': 'a', 'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
-        'ē': 'e', 'ė': 'e', 'ę': 'e', 'î': 'i', 'ï': 'i', 'í': 'i', 'ī': 'i', 'į': 'i', 'ô': 'o', 'ö': 'o', 'ò': 'o', 'ó': 'o', 'õ': 'o', 'ø': 'o',
-        'ō': 'o', 'ù': 'u', 'û': 'u', 'ü': 'u', 'ú': 'u', 'ū': 'u', 'ų': 'u', 'ç': 'c'}
-
-    list_without_accent = []
-    for element in string:
-        list_without_accent.append(accents.get(element, element))  # Go find the value of the key element if element is in accents. If not, it gives element.
-
-    return ''.join(list_without_accent)
-"""
