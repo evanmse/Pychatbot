@@ -35,21 +35,59 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
     for word in list_unique_word:
         dictionnary[word] = list_chain_no_punctuations.count(word)  # Create the dictionnary
 
+    if '' in list(dictionnary.keys()):
+        print(" '' in dictionnary.keys() for the score_TF function")
+
     return dictionnary
 
 
 def score_IDF(directory):
     files_name = os.listdir(directory)
-    dictionnary_IDF = {}
+    mylist = []
+    mydict = {}
+    nb_document_word = 0
 
-    for file in files_name[1:]:
-        full_path = os.path.join('./speeches', file)
+    for file in files_name:         #Go through each file in the directory
+        full_path = os.path.join('./speeches', file)    #Put in a variable the path of the file
 
         with open(full_path, 'r', encoding='utf-8') as f:
             content = f.read().lower()
-            print(score_TF(content))
+            dictionnary_file = score_TF(content)
+            mylist = list(set(mylist + list(dictionnary_file.keys())))  #List containing all the words of all the files
+
+    for element in mylist:
+        mydict[element] = 0
+
+    print(mydict)
+
+    for document in files_name:
+        full_path2 = os.path.join('./speeches', document)
+
+        with open(full_path2, 'r', encoding='utf-8') as f2:
+            content = f2.read().lower()
+
+            for word in mylist:
+                if word in content:
+                    mydict[word] += 1
+
+    print("mydict:  ", mydict)
 
 
+
+
+"""
+
+with open('./speeches/Nomination_Sarkozy.txt', 'r', encoding='utf-8') as f:
+    content = f.read().lower()
+    dictionnary_file = score_TF(content)
+    print(dictionnary_file.keys())
+    mylist = list(dictionnary_file.keys())  # List containing all the words of all the files
+    print("mylist : ", mylist)
+    if '' in mylist:
+        print("BREAK")
+"""
+
+"""
 def no_accents(string):  # Remove all the accents of a string
     accents = {'à': 'a', 'â': 'a', 'ä': 'a', 'á': 'a', 'ã': 'a', 'å': 'a', 'ā': 'a', 'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
         'ē': 'e', 'ė': 'e', 'ę': 'e', 'î': 'i', 'ï': 'i', 'í': 'i', 'ī': 'i', 'į': 'i', 'ô': 'o', 'ö': 'o', 'ò': 'o', 'ó': 'o', 'õ': 'o', 'ø': 'o',
@@ -60,3 +98,4 @@ def no_accents(string):  # Remove all the accents of a string
         list_without_accent.append(accents.get(element, element))  # Go find the value of the key element if element is in accents. If not, it gives element.
 
     return ''.join(list_without_accent)
+"""
