@@ -25,17 +25,21 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
     for k in range(list_chain_no_punctuations.count("\n")):  # Remove all the "\n" in the list
         list_chain_no_punctuations.remove("\n")
 
-    for j in range(len(list_chain_no_punctuations)):  # Remove "\n" in the each word of the list
-        if "\n" in list_chain_no_punctuations[j]:
+    for j in range(len(list_chain_no_punctuations)):  # Remove "\n" in each word of the list
+
+        if "\n" in list_chain_no_punctuations[j][:2] or "\n" in list_chain_no_punctuations[j][-2:]:
             list_chain_no_punctuations[j] = list_chain_no_punctuations[j].replace("\n", "")
+
+        elif "\n" in list_chain_no_punctuations[j][2:-2]:
+            word_space = list_chain_no_punctuations[j].split("\n")
+            list_chain_no_punctuations.remove(list_chain_no_punctuations[j])
+            for x in range(len(word_space)):
+                list_chain_no_punctuations.append(word_space[x])
 
     list_unique_word = list(set(list_chain_no_punctuations))
 
     for word in list_unique_word:
         dictionnary[word] = list_chain_no_punctuations.count(word)  # Create the dictionnary
-
-    if '' in list(dictionnary.keys()):
-        print(" '' in dictionnary.keys() for the score_TF function")
 
     return dictionnary
 
@@ -67,7 +71,6 @@ def score_IDF(directory):
             for word in mylist:     #Add 1 to mydict[word] if the word is in the .txt file
                 if word in list(content_dictionnary.keys()):
                     mydict[word] += 1
-
 
     for key in list(mydict.keys()):             #Calculate the log of the inversed of the proportion of documents containing a certain word
         number_document = len(list_of_files('./speeches', '.txt'))
