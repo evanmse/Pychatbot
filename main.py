@@ -6,7 +6,6 @@ if __name__ == "__main__":
         displayStart()
         while True:
                 dir = menu()
-                #dir = input("Enter a number to go in section or a shortcut :")
                 
                 if dir == "1":
                         sectionDoc()
