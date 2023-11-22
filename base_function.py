@@ -35,7 +35,7 @@ def assocNamePres(namePresident): # Function that associate to a president name,
     dictPres = {'Chirac': 'Jacques', 'Giscard dEstaing': 'Valéry', 'Hollande': 'François', 'Macron': 'Emmanuel', 'Mitterrand': 'François','Sarkozy': 'Nicolas' }
     return dictPres[namePresident]
 
-def lowerClean(inputFile): # Input name of file to go upper
+def lowerClean(inputFile): # Input file to go lowercase
     # Test if the file exists
     path_cleaned_dir = "./cleaned" 
     if not os.path.exists(path_cleaned_dir):
@@ -52,20 +52,20 @@ def lowerClean(inputFile): # Input name of file to go upper
 
     return
 
-def clearFile(inputFile): #Main function for clean File
+def clearFile(inputFile): # Main function for clean File
     path_file = path_cleaned_file(inputFile)
 
     with open(path_file, 'r', encoding='utf-8') as file:
         text = file.read()
 
-    clearText = cleanText(text) #Call the sub-function for clean the text
+    clearText = cleanText(text) # Call the sub-function for clean the text
 
     with open(path_file, 'w', encoding='utf-8') as file:
         file.write(clearText) # Write the clean text
 
     return 
 
-def cleanText(text): #Sub-Function that clean a text
+def cleanText(text): # Sub-Function that clean a text
     dicReplace = {'é':'e', 'à':'a', 'è':'e', 'ç':'c', 'ê': 'e', 'ë': 'e', 'ù':'u', 'â':'a'} # Dictionary of values to be changed
     punctuation = [',',';','-','!','?','\'','.',':','"','`'] # List of punctuation to be change
 
@@ -77,11 +77,11 @@ def cleanText(text): #Sub-Function that clean a text
 
     return text
 
-def path_cleaned_file(inputFile): #Function that give to a cleaned file its path
+def path_cleaned_file(inputFile): # Function that give to a cleaned file its path
     path_cleaned_file = "./cleaned/{}".format(inputFile)
     return path_cleaned_file
 
-def path_speeches_file(inputFile): #Function that give to a speeches file its path
+def path_speeches_file(inputFile): # Function that give to a speeches file its path
     path_input_file = "./speeches/{}".format(inputFile)
     return path_input_file
 
