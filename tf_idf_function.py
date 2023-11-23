@@ -75,4 +75,4 @@ def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word i
         dictionnary_scoreTF_word = score_TF(content)
         dictionnary_scoreIDF_word = score_IDF('./speeches')
 
-        return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
+    return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
