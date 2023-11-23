@@ -1,47 +1,28 @@
 import math
+
+import test_function
 from base_function import *
+from test_function import *
 
 directory = "./speeches"
 
 
 def score_TF(strings_chain):  # Function that associates to each word how many times it appeared in a string chain
+    content = strings_chain.lower()
+    content = cleanText(content)
+    dictionary = {}
+    mylist = content.split(" ")
+    print(mylist)
 
-    dictionnary = {}
-    punctuations = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"  # A string that contains all the punctuations
-    mylist_words = []
+    for i in range(mylist.count("")):  # Remove all the "" in the list
+        mylist.remove("")
 
-    for caracter in strings_chain:
-        if caracter not in punctuations:
-            mylist_words.append(caracter)  # Append to mylist_words all the caracters that are not punctuations
-        else:
-            mylist_words.append(' ')  # Replace all the punctuations by space
-
-    str_chain_no_punctuations = ''.join(mylist_words)
-    list_chain_no_punctuations = str_chain_no_punctuations.split(" ")
-
-    for i in range(list_chain_no_punctuations.count("")):  # Remove all the "" in the list
-        list_chain_no_punctuations.remove("")
-
-    for k in range(list_chain_no_punctuations.count("\n")):  # Remove all the "\n" in the list
-        list_chain_no_punctuations.remove("\n")
-
-    for j in range(len(list_chain_no_punctuations)):  # Remove "\n" in each word of the list
-
-        if "\n" in list_chain_no_punctuations[j][:2] or "\n" in list_chain_no_punctuations[j][-2:]:
-            list_chain_no_punctuations[j] = list_chain_no_punctuations[j].replace("\n", "")
-
-        elif "\n" in list_chain_no_punctuations[j][2:-2]:
-            word_space = list_chain_no_punctuations[j].split("\n")
-            list_chain_no_punctuations.remove(list_chain_no_punctuations[j])
-            for x in range(len(word_space)):
-                list_chain_no_punctuations.append(word_space[x])
-
-    list_unique_word = list(set(list_chain_no_punctuations))
+    list_unique_word = list(set(mylist))
 
     for word in list_unique_word:
-        dictionnary[word] = list_chain_no_punctuations.count(word)  # Create the dictionnary
+        dictionary[word] = mylist.count(word)
 
-    return dictionnary
+    return dictionary
 
 
 def score_IDF(directory):
@@ -51,7 +32,7 @@ def score_IDF(directory):
     dictionnary_IDF = {}
 
     for file in files_name:  # Go through each file in the directory
-        full_path = os.path.join('./speeches', file)  # Put in a variable the path of the file
+        full_path = path_speeches_file(file)  # Put in a variable the path of the file
 
         with open(full_path, 'r', encoding='utf-8') as f:
             content = f.read().lower()
@@ -62,7 +43,7 @@ def score_IDF(directory):
         mydict[element] = 0
 
     for document in files_name:
-        full_path2 = os.path.join('./speeches', document)
+        full_path2 = path_speeches_file(document)
 
         with open(full_path2, 'r', encoding='utf-8') as f2:
             content = f2.read().lower()

@@ -66,7 +66,7 @@ def clearFile(inputFile): # Main function for clean File
     return 
 
 def cleanText(text): # Sub-Function that clean a text
-    dicReplace = {'é':'e', 'à':'a', 'è':'e', 'ç':'c', 'ê': 'e', 'ë': 'e', 'ù':'u', 'â':'a'} # Dictionary of values to be changed
+    dicReplace = {'é':'e', 'à':'a', 'è':'e', 'ç':'c', 'ê': 'e', 'ë': 'e', 'ù':'u', 'â':'a', '\n' : ' '} # Dictionary of values to be changed
     punctuation = [',',';','-','!','?','\'','.',':','"','`'] # List of punctuation to be change
 
     for character in punctuation: # Replace of ponctuation
@@ -84,4 +84,3 @@ def path_cleaned_file(inputFile): # Function that give to a cleaned file its pat
 def path_speeches_file(inputFile): # Function that give to a speeches file its path
     path_input_file = "./speeches/{}".format(inputFile)
     return path_input_file
-
