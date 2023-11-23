@@ -12,7 +12,6 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
     content = cleanText(content)
     dictionary = {}
     mylist = content.split(" ")
-    print(mylist)
 
     for i in range(mylist.count("")):  # Remove all the "" in the list
         mylist.remove("")
@@ -36,6 +35,7 @@ def score_IDF(directory):
 
         with open(full_path, 'r', encoding='utf-8') as f:
             content = f.read().lower()
+            content = cleanText(content)
             dictionnary_file = score_TF(content)
             mylist = list(set(mylist + list(dictionnary_file.keys())))  # List containing all the words of all the files
 
@@ -46,8 +46,9 @@ def score_IDF(directory):
         full_path2 = path_speeches_file(document)
 
         with open(full_path2, 'r', encoding='utf-8') as f2:
-            content = f2.read().lower()
-            content_dictionnary = score_TF(content)
+            content2 = f2.read().lower()
+            content2 = cleanText(content2)
+            content_dictionnary = score_TF(content2)
 
             for word in mylist:  # Add 1 to mydict[word] if the word is in the .txt file
                 if word in list(content_dictionnary.keys()):
@@ -66,9 +67,11 @@ def score_IDF(directory):
 def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word in a certain document
     full_path = os.path.join('./speeches', document)
     word = word.lower()
+    word = cleanText(word)
 
     with open(full_path, 'r', encoding='utf-8') as f:
         content = f.read().lower()
+        content = cleanText(content)
         dictionnary_scoreTF_word = score_TF(content)
         dictionnary_scoreIDF_word = score_IDF('./speeches')
 
