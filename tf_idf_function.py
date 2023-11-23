@@ -40,6 +40,7 @@ def score_IDF(directory):
             mylist = list(set(mylist + list(dictionnary_file.keys())))  # List containing all the words of all the files
 
     for element in mylist:  # Creation of the dictionnary containing all the elements of mylist as keys
+        print(element)
         mydict[element] = 0
 
     for document in files_name:
@@ -75,4 +76,5 @@ def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word i
         dictionnary_scoreTF_word = score_TF(content)
         dictionnary_scoreIDF_word = score_IDF('./speeches')
 
-        return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
+    return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
+
