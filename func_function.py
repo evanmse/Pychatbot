@@ -54,6 +54,7 @@ def min_word_TD_IDF(value):  # Functionality that gives the word(s) with min TD-
 
 
 def max_word_TD_IDF(value):  # Functionality that gives the word(s) with max TD-IDF in all text
+
     dictionnary_scoreIDF_word = score_IDF('./speeches')
     maxi = max_score_TF_IDF()
     files_name = os.listdir('./speeches')
@@ -73,17 +74,36 @@ def max_word_TD_IDF(value):  # Functionality that gives the word(s) with max TD-
     return list(set(mylist))
 
 
-def repeat_word_pres(president):  # Functionality that give the most word repeat by a president
+def word_most_repeated_Chirac():  # Functionality that gives the most repeated word by Chirac
+
+    content = ''
+    files_name = os.listdir('./speeches')
+    mylist_Chirac = [text for text in files_name if 'Chirac' in text]
+    mylist = []
+
+    for file in mylist_Chirac:
+        full_path = path_speeches_file(file)
+
+        with open(full_path, 'r', encoding='utf-8') as f:
+            content = content + f.read()
+
+    dictionnary_scoreTF_word = score_TF(content)
+
+    maxi = max(list(dictionnary_scoreTF_word.values()))
+
+    for key in list(dictionnary_scoreTF_word.keys()):
+        if dictionnary_scoreTF_word[key] == maxi:
+            mylist.append(key)
+
+    return mylist
+
+
+def talking_climate():  # Functionality that gives the first president who talked about climate
     print("In development")
     return
 
 
-def talking_climate():  # Functionality that give who talks about climate
-    print("In development")
-    return
-
-
-def talking_nation():  # Functionality that give who talks about climate
+def talking_nation():  # Functionality that gives which president talked about climate
     print("In development")
     return
 
