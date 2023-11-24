@@ -67,7 +67,7 @@ def searchFunc(search):
         return
     else:
         for keys, value in dic.items():
-            if (keys.find(search) != -1) and (value.find(search) != -1) :
+            if (keys.find(search) != -1) or (value.find(search) != -1) :
                 print("Function : {}".format(keys))
                 print("Function : {}".format(value))
         return
@@ -83,10 +83,9 @@ def sectionDocSearch():
         search = input("# Please enter 3 letter to search in documentation :")
         if len(search) < 3:
             search = input("# !! Please enter 3 letter to search in documentation :")
-        else:
-            searchFunc(search)
-            time.sleep(5)
-            section()
+        searchFunc(search)
+        time.sleep(5)
+        section()
         return
 
 def allFunction():
@@ -290,7 +289,15 @@ def searchTest(search):
     "test_listNamePres()":" # Test for listNamePres ",
     "test_score_TF()":"# Test for score_TF",
     "path_cleaned_file":"# Function that give to a cleaned file its path",
-    "path_speeches_file":"# Function that give to a speeches file its path"
+    "path_speeches_file":"# Function that give to a speeches file its path",
+    "min_word_file_TD_IDF":"# Functionality that gives the word(s) that are not important in a file, TD-IDF = 0",
+    "max_word_file_TD_IDF":"# Functionality that gives the most important words in a file",
+    "min_word_TD_IDF":"# Functionality that gives the word(s) with min TD-IDF in all text",
+    "max_word_TD_IDF":"# Functionality that gives the word(s) with max TD-IDF in all text",
+    "word_most_repeated_Chirac":"# Functionality that gives the most repeated word(s) by Chirac",
+    "talking_climate:":"# Functionality that gives the first president who talked about climate",
+    "talking_nation":"# Functionality that gives which president(s) said the word \"Nation\" and the one who repeated it the most time",
+    "all_word_president":"# Functionality that gives the words all presidents have said except the unimportant words"
     }
     if search == "all":
         for keys, value in dic.items():
@@ -299,7 +306,7 @@ def searchTest(search):
         return
     else:
         for keys, value in dic.items():
-            if (keys.find(search) != -1) and (value.find(search) != -1) :
+            if (keys.find(search) != -1) or (value.find(search) != -1) :
                 print("Test : {}".format(keys))
                 print("Function : {}".format(value))
         return
@@ -345,13 +352,11 @@ def sectionTestSearch():
     search = input("# Please enter 3 letter to search in documentation :")
     if len(search) < 3:
             search = input("# !! Please enter 3 letter to search in documentation :")
-    else:
-        searchTest(search)
-        time.sleep(5)
-        section()
-        return
-    return
     
+    searchTest(search)
+    time.sleep(5)
+    section()
+    return
 
 def sectionTestHow():
     print("""
@@ -384,7 +389,20 @@ def test():
     while True:
                 dir = input("# Test # :")
 
-                if dir == "min_word_file_TD_IDF":
+
+                if dir == "test_extractNameFile":
+                    test_extractNameFile()
+                elif dir == "test_assocNamePres":
+                    test_assocNamePres()
+                elif dir == "test_listNamePres":
+                    test_listNamePres()
+                elif dir == "test_score_TF":
+                    test_score_TF()
+                elif dir == "test_lowerClean":
+                    test_lowerClean()
+                elif dir == "test_clearFile":
+                    test_clearFile()
+                elif dir == "min_word_file_TD_IDF":
                     file = input("Give a name of file")
                     min_word_file_TD_IDF(file)
                 elif dir == "max_word_file_TD_IDF":
@@ -392,10 +410,10 @@ def test():
                     max_word_file_TD_IDF(file)
                 elif dir == "min_word_TD_IDF":
                     value = input("Input the number of value that you want :")
-                    min_word_TD_IDF()
+                    min_word_TD_IDF(value)
                 elif dir == "max_word_TD_IDF":
                     value = input("Input the number of value that you want :") 
-                    max_word_TD_IDF()
+                    max_word_TD_IDF(value)
                 elif dir == "word_most_repeated_Chirac":
                     word_most_repeated_Chirac()
                 elif dir == "talking_climate":
