@@ -2,7 +2,8 @@ from tf_idf_function import score_TF, score_IDF
 from base_function import path_speeches_file
 import os
 
-def max_score_TF_IDF(): #Function that calculates the highest TF-IDF score
+
+def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
     dictionnary_scoreIDF_word = score_IDF('./speeches')
     maxi = 0
     files_name = os.listdir('./speeches')
@@ -21,7 +22,17 @@ def max_score_TF_IDF(): #Function that calculates the highest TF-IDF score
     return maxi
 
 
-def min_word_file_TD_IDF():  # Functionality that give the non-important word, TD-IDF = 0
+def min_word_file_TD_IDF(file):  # Functionality that gives the word(s) that are not important in file, TD-IDF = 0
+    print("In development")
+    return
+
+
+def max_word_file_TD_IDF(file):  # Functionality that gives the most important words in file, TD-IDF near of 1
+    print("In development")
+    return
+
+
+def min_word_TD_IDF(value):  # Functionality that gives the word(s) with min TD-IDF in all text
     mylist = []
     dictionnary_scoreIDF_word = score_IDF('./speeches')
 
@@ -42,7 +53,7 @@ def min_word_file_TD_IDF():  # Functionality that give the non-important word, T
     return list(set(mylist))
 
 
-def max_word_file_TD_IDF():  # Functionality that give the word(s) with the highest score TD_IDF
+def max_word_TD_IDF(value):  # Functionality that gives the word(s) with max TD-IDF in all text
     dictionnary_scoreIDF_word = score_IDF('./speeches')
     maxi = max_score_TF_IDF()
     files_name = os.listdir('./speeches')
@@ -60,16 +71,6 @@ def max_word_file_TD_IDF():  # Functionality that give the word(s) with the high
                 mylist.append(i)
 
     return list(set(mylist))
-
-
-def min_word_TD_IDF(value):  # Functionality that give the word with min TD-IDF in all text
-    print("In development")
-    return
-
-
-def max_word_TD_IDF(value):  # Functionality that give the word with max TD-IDF in all text
-    print("In development")
-    return
 
 
 def repeat_word_pres(president):  # Functionality that give the most word repeat by a president
@@ -90,5 +91,3 @@ def talking_nation():  # Functionality that give who talks about climate
 def all_word_president():  # Functionality words all presidents have spoken without the unimportant words
     print("In development")
     return
-
-
