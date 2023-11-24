@@ -44,21 +44,21 @@ def menu():
                 ":func", ":func search",":func how", ":func func",
                 ":test", ":test search",":test how", ":test func", ":section",":terminal", ":exit")
     
-    dir = str(input("Enter a number to go in section or a shortcut :"))
+    dir = str(input("Enter a number to go in section or a shortcut : "))
     while not dir in setAnswer:
         dir = input("!! Please retry to enter a correct number or shortcut : ")         
     return dir
 
 def searchFunc(search):
-    dic = {"list_of_files()":"# Function that gives the list of files, Example : /speeches",
+    dic = {"list_of_files()":"# Function that gives the list of files in a directory, Example : /speeches",
     "extractNameFile()":"# Function that extracts the name of the president in the name of a certain file",
-    "listNamePres()":"# Function that displays the list of the names of the presidents without duplications(doublons)",
-    "assocNamePres()":"# Function that associate to a president name, its first name",
-    "lowerClean()":"# Input file to go lowercase",
-    "clearFile()":"# Main function for clean File",
-    "cleanText()":"# Sub-Function that clean a text",
-    "path_cleaned_file()":"# Function that give to a cleaned file its path",
-    "path_speeches_file()":"# Function that give to a speeches file its path"
+    "listNamePres()":"# Function that displays the list of the names of the presidents without duplications",
+    "assocNamePres()":"# Function that associates to a president name, its first name",
+    "lowerClean()":"# Function that transforms the content of a file into lowercase",
+    "clearFile()":"# Main function in order to clean a certain file",
+    "cleanText()":"# Sub-Function that cleans a text by removing the punctuations and the accents",
+    "path_cleaned_file()":"# Function that gives to a cleaned file its path",
+    "path_speeches_file()":"# Function that gives to a speeches file its path"
     }
     if search == "all":
         for keys, value in dic.items():
@@ -98,8 +98,8 @@ def sectionDoc():
     #                    Documentation                              #
     #   Please enter a number ?                                     #
     #   1 - Search                                                  #
-    #   2 - How to us ?                                             #
-    #   3 - Definition of function                                  #
+    #   2 - How to use ?                                            #
+    #   3 - List of all the functions and what they do              #
     #   4 - Exit                                                    #
     #################################################################
     """)
@@ -124,7 +124,7 @@ def sectionDoc():
 def sectionDocHow():
         print("""
     #################################################################
-    #                  How to us the documentation                  #
+    #                  How to use the documentation                  #
     #################################################################
     #                                                               #
     # - You can search with search or command " :doc search"        #
@@ -149,14 +149,14 @@ def sectionDocFunc():
 ##################################### Part Functionality #####################################################
 
 def searchFunctionality(search):
-    dic = {"min_word_file_TD_IDF":"# Functionality that give the word that not important in file, TD-IDF = 0",
-    "min_word_file_TD_IDF":"# Functionality that give the word that most important in file, TD-IDF near of 1",
-    "min_word_TD_IDF":"# Functionality that give the word with min TD-IDF in all text",
-    " max_word_TD_IDF":"# Functionality that give the word with max TD-IDF in all text",
-    "repeat_word_pres":"# Functionality that give the most word repeat by a president",
-    "talking_climate:":"# Functionality that give who talks about climate",
-    "talking_nation":"# Functionality that give who talks about climate",
-    "all_word_president":"# Functionality words all presidents have spoken without the unimportant words",
+    dic = {"min_word_file_TD_IDF":"# Functionality that gives the word(s) that are not important in a file, TD-IDF = 0",
+    "max_word_file_TD_IDF":"# Functionality that gives the most important words in a file",
+    "min_word_TD_IDF":"# Functionality that gives the word(s) with min TD-IDF in all text",
+    "max_word_TD_IDF":"# Functionality that gives the word(s) with max TD-IDF in all text",
+    "word_most_repeated_Chirac":"# Functionality that gives the most repeated word(s) by Chirac",
+    "talking_climate:":"# Functionality that gives the first president who talked about climate",
+    "talking_nation":"# Functionality that gives which president(s) said the word \"Nation\" and the one who repeated it the most time",
+    "all_word_president":"# Functionality that gives the words all presidents have said except the unimportant words",
     }
     if search == "all":
         for keys, value in dic.items():
@@ -176,7 +176,7 @@ def sectionFunc():
     #                    Functionality                              #
     #   Please enter a number ?                                     #
     #   1 - Search for functionality                                #
-    #   2 - How to us ?                                             #
+    #   2 - How to use ?                                             #
     #   3 - Definition of function                                  #
     #   4 - Terminal                                                #
     #   5 - Exit                                                    #
@@ -263,9 +263,8 @@ def terminal():
                 elif dir == "max_word_TD_IDF":
                     value = input("Input the number of value that you want :") 
                     max_word_TD_IDF(value)
-                elif dir == "repeat_word_pres":
-                    president = input("What prsident do you want :")
-                    repeat_word_pres(president)
+                elif dir == "word_most_repeated_Chirac":
+                    word_most_repeated_Chirac()
                 elif dir == "talking_climate":
                     talking_climate()
                 elif dir == "talking_nation":
@@ -290,7 +289,15 @@ def searchTest(search):
     "test_listNamePres()":" # Test for listNamePres ",
     "test_score_TF()":"# Test for score_TF",
     "path_cleaned_file":"# Function that give to a cleaned file its path",
-    "path_speeches_file":"# Function that give to a speeches file its path"
+    "path_speeches_file":"# Function that give to a speeches file its path",
+    "min_word_file_TD_IDF":"# Functionality that gives the word(s) that are not important in a file, TD-IDF = 0",
+    "max_word_file_TD_IDF":"# Functionality that gives the most important words in a file",
+    "min_word_TD_IDF":"# Functionality that gives the word(s) with min TD-IDF in all text",
+    "max_word_TD_IDF":"# Functionality that gives the word(s) with max TD-IDF in all text",
+    "word_most_repeated_Chirac":"# Functionality that gives the most repeated word(s) by Chirac",
+    "talking_climate:":"# Functionality that gives the first president who talked about climate",
+    "talking_nation":"# Functionality that gives which president(s) said the word \"Nation\" and the one who repeated it the most time",
+    "all_word_president":"# Functionality that gives the words all presidents have said except the unimportant words"
     }
     if search == "all":
         for keys, value in dic.items():
@@ -382,6 +389,7 @@ def test():
     while True:
                 dir = input("# Test # :")
 
+
                 if dir == "test_extractNameFile":
                     test_extractNameFile()
                 elif dir == "test_assocNamePres":
@@ -394,6 +402,26 @@ def test():
                     test_lowerClean()
                 elif dir == "test_clearFile":
                     test_clearFile()
+                elif dir == "min_word_file_TD_IDF":
+                    file = input("Give a name of file")
+                    min_word_file_TD_IDF(file)
+                elif dir == "max_word_file_TD_IDF":
+                    file = input("Give a name of file")
+                    max_word_file_TD_IDF(file)
+                elif dir == "min_word_TD_IDF":
+                    value = input("Input the number of value that you want :")
+                    min_word_TD_IDF(value)
+                elif dir == "max_word_TD_IDF":
+                    value = input("Input the number of value that you want :") 
+                    max_word_TD_IDF(value)
+                elif dir == "word_most_repeated_Chirac":
+                    word_most_repeated_Chirac()
+                elif dir == "talking_climate":
+                    talking_climate()
+                elif dir == "talking_nation":
+                    talking_nation()
+                elif dir == "all_word_president":
+                    all_word_president()
                 elif dir == ":exit":
                         print("Exiting the Terminal. Goodbye!")
                         section()
