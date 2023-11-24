@@ -1,6 +1,6 @@
 import os
 
-def list_of_files(directory, extension):  # Function that gives the list of files, Example : /speeches
+def list_of_files(directory, extension):  # Function that gives the list of files in a directory, Example : /speeches
     files_names = []
 
     for filename in os.listdir(directory):

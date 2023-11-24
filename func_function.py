@@ -27,12 +27,12 @@ def min_word_file_TD_IDF(file):  # Functionality that gives the word(s) that are
     return
 
 
-def max_word_file_TD_IDF(file):  # Functionality that gives the most important words in file, TD-IDF near of 1
+def max_word_file_TD_IDF(file):  # Functionality that gives the most important words in file
     print("In development")
     return
 
 
-def min_word_TD_IDF(value):  # Functionality that gives the word(s) with min TD-IDF in all text
+def min_word_TD_IDF():  # Functionality that gives the word(s) with min TD-IDF in all text
     mylist = []
     dictionnary_scoreIDF_word = score_IDF('./speeches')
 
@@ -53,7 +53,7 @@ def min_word_TD_IDF(value):  # Functionality that gives the word(s) with min TD-
     return list(set(mylist))
 
 
-def max_word_TD_IDF(value):  # Functionality that gives the word(s) with max TD-IDF in all text
+def max_word_TD_IDF():  # Functionality that gives the word(s) with max TD-IDF in all text
 
     dictionnary_scoreIDF_word = score_IDF('./speeches')
     maxi = max_score_TF_IDF()
@@ -103,11 +103,11 @@ def talking_climate():  # Functionality that gives the first president who talke
     return
 
 
-def talking_nation():  # Functionality that gives which president talked about climate
+def talking_nation():  # Functionality that gives which president(s) said the word "Nation" and the one who repeated it the most time
     print("In development")
     return
 
 
-def all_word_president():  # Functionality words all presidents have spoken without the unimportant words
+def all_word_president():  # Functionality that gives the words all presidents have said except the unimportant words
     print("In development")
     return
