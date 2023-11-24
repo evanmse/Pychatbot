@@ -20,12 +20,12 @@ if __name__ == "__main__":
                 elif dir == ":doc how":
                         sectionDocHow()
                 elif dir == ":doc func":
-                        sectionDocFunc() #OK
+                        sectionDocFunc()
                 elif dir == ":func":
                         sectionFunc()
                 elif dir == ":func search":
                         sectionFuncSearch()
-                elif dir == ":func how": #Ok
+                elif dir == ":func how": 
                         sectionFuncHow()
                 elif dir == ":func func":
                         sectionFuncFunc()
