@@ -1,7 +1,7 @@
 import math
 from base_function import *
 
-directory = "./speeches"
+#directory = "./speeches"
 
 
 def score_TF(strings_chain):  # Function that associates to each word how many times it appeared in a string chain
@@ -69,8 +69,6 @@ def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word i
     with open(full_path, 'r', encoding='utf-8') as f:
         content = cleanText(f.read().lower())
         dictionnary_scoreTF_word = score_TF(content)
-        if word not in list(dictionnary_scoreTF_word.keys()):
-            print("WORD NOT IN KEYS", "word :",word,":", document)
 
     return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
 
@@ -108,4 +106,38 @@ def matrix_TD_IDF(directory):
 
     return
 
-matrix_TD_IDF('./cleaned')
+#matrix_TD_IDF('./cleaned')
+
+def matrix_TD_IDF2(directory):
+    list_final = []
+    rest = score_IDF('./cleaned')
+
+    for keys, value in rest.items():
+        temp = []
+        for file in list_of_files(directory,"txt"):
+
+            with open(path_cleaned_file(file), 'r', encoding="utf-8") as f:
+                content = cleanText(f.read())
+                dictionnary_scoreTF_word = score_TF(content)
+
+                if keys in set(dictionnary_scoreTF_word.keys()):
+                    temp.append(dictionnary_scoreTF_word[keys] * rest[keys])
+                else:
+                    temp.append(0)
+        temp.append(keys)
+
+        list_final.append(temp)
+
+
+    for file in list_of_files("./cleaned","txt"):
+        print(file,"|", end=" ")
+    for keys, value in rest.items():
+        print(keys, end=" ")
+    for word in range(len(list_final)):
+        print(list_final[word][-1], ':', end=" ")
+        for item in range(len(list_final[word][:-1])):
+            print(list_final[word][item],"|", end=" ")
+        print()
+    return
+
+matrix_TD_IDF2("./cleaned")
