@@ -1,5 +1,5 @@
 from tf_idf_function import score_TF, score_IDF
-from base_function import path_speeches_file
+from base_function import path_speeches_file, cleanText
 import os
 
 
@@ -32,7 +32,7 @@ def max_word_file_TD_IDF(file):  # Functionality that gives the most important w
     return
 
 
-def min_word_TD_IDF():  # Functionality that gives the word(s) with min TD-IDF in all text
+def min_word_TD_IDF():  # Functionality that gives the word(s) with TF-IDF = 0 in all text
     mylist = []
     dictionnary_scoreIDF_word = score_IDF('./speeches')
 
@@ -109,5 +109,21 @@ def talking_nation():  # Functionality that gives which president(s) said the wo
 
 
 def all_word_president():  # Functionality that gives the words all presidents have said except the unimportant words
-    print("In development")
-    return
+
+    files_name = os.listdir('./speeches')
+    word_TF_IDF_zero = min_word_TD_IDF()
+    mylist = []
+
+    for file in files_name[1:]:  # Regroup in a list all the words that presidents have said in common
+        full_path = path_speeches_file(file)
+
+        with open(full_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            list_word = list(score_TF(content).keys())
+            mylist.append(set(list_word))
+
+    word_in_common = list(set.intersection(*mylist))  # Find the intersection between all the sets in my list
+
+    word_in_common = [word for word in word_in_common if word not in word_TF_IDF_zero]
+
+    return word_in_common
