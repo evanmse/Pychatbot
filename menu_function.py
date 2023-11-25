@@ -325,8 +325,8 @@ def sectionTest():
     #   Please enter a number ?                                     #
     #   1 - Search for test                                         #
     #   2 - How to use ?                                            #
-    #   3 - Definition of  all test                                 #
-    #   4 - Test                                                    #
+    #   3 - List of all the functions in the section Test           #
+    #   4 - Test a function                                         #
     #   5 - Exit                                                    #
     #################################################################
     """)
@@ -398,7 +398,7 @@ def sectionTestFunc():
 
 def test():
     while True:
-                dir = input("# Test # :")
+                dir = input("# Test # (If you want to exit, do \":exit\") :" )
 
 
                 if dir == "test_extractNameFile":
