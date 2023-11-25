@@ -86,8 +86,9 @@ def matrix_TD_IDF(directory):
                 content = cleanText(f.read())
                 dictionnary_scoreTF_word = score_TF(content)
 
-                if keys in list(dictionnary_scoreTF_word.keys()):
+                if keys in set(dictionnary_scoreTF_word.keys()):
                     temp.append(dictionnary_scoreTF_word[keys] * rest[keys])
+                    print(keys, dictionnary_scoreTF_word[keys], rest[keys],dictionnary_scoreTF_word[keys] * rest[keys], ';',  end=" ")
 
         list_final.append(temp)
 
@@ -108,4 +109,3 @@ def matrix_TD_IDF(directory):
     return
 
 matrix_TD_IDF('./cleaned')
-
