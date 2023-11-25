@@ -44,7 +44,7 @@ def menu():
                 ":func", ":func search",":func how", ":func func",
                 ":test", ":test search",":test how", ":test func", ":section",":terminal", ":exit")
     
-    dir = str(input("Enter a number to go in section or a shortcut : "))
+    dir = str(input("Enter a number in order to go in a section or a shortcut : "))
     while not dir in setAnswer:
         dir = input("!! Please retry to enter a correct number or shortcut : ")         
     return dir
@@ -124,7 +124,7 @@ def sectionDoc():
 def sectionDocHow():
         print("""
     #################################################################
-    #                  How to use the documentation                  #
+    #                  How to use the documentation                 #
     #################################################################
     #                                                               #
     # - You can search with search or command " :doc search"        #
@@ -174,9 +174,9 @@ def sectionFunc():
         print("""
     #################################################################
     #                    Functionality                              #
-    #   Please enter a number ?                                     #
+    #   Please enter a number                                       #
     #   1 - Search for functionality                                #
-    #   2 - How to use ?                                             #
+    #   2 - How to use ?                                            #
     #   3 - Definition of function                                  #
     #   4 - Terminal                                                #
     #   5 - Exit                                                    #
@@ -221,7 +221,7 @@ def sectionFuncSearch():
 def sectionFuncHow():
     print("""
     #################################################################
-    #                  How to us functionality                      #
+    #                  How to use functionality                     #
     #################################################################
     #                                                               #
     # - You can search with search or command " :func search"       #
@@ -239,7 +239,7 @@ def sectionFuncHow():
 def sectionFuncFunc():
     print("""
     #################################################################
-    #                        All functionality                      #
+    #                        All functionalities                    #
     #################################################################""")
     searchFunctionality("all")
     time.sleep(5)
@@ -288,8 +288,8 @@ def searchTest(search):
     "test_assocNamePres()":"# Test for assocNamePres, for Sarkozy",
     "test_listNamePres()":" # Test for listNamePres ",
     "test_score_TF()":"# Test for score_TF",
-    "path_cleaned_file":"# Function that give to a cleaned file its path",
-    "path_speeches_file":"# Function that give to a speeches file its path",
+    "path_cleaned_file":"# Function that gives to a cleaned file its path",
+    "path_speeches_file":"# Function that gives to a speeches file its path",
     "min_word_file_TD_IDF":"# Functionality that gives the word(s) that are not important in a file, TD-IDF = 0",
     "max_word_file_TD_IDF":"# Functionality that gives the most important words in a file",
     "min_word_TD_IDF":"# Functionality that gives the word(s) with min TD-IDF in all text",
@@ -317,7 +317,7 @@ def sectionTest():
     #                            Test                               #
     #   Please enter a number ?                                     #
     #   1 - Search for test                                         #
-    #   2 - How to us ?                                             #
+    #   2 - How to use ?                                            #
     #   3 - Definition of  all test                                 #
     #   4 - Test                                                    #
     #   5 - Exit                                                    #
@@ -361,7 +361,7 @@ def sectionTestSearch():
 def sectionTestHow():
     print("""
     #################################################################
-    #                         How to us test                        #
+    #                         How to use test                       #
     #################################################################
     #                                                               #
     # - You can search with search or command " :test search"       #
@@ -409,11 +409,9 @@ def test():
                     file = input("Give a name of file")
                     max_word_file_TD_IDF(file)
                 elif dir == "min_word_TD_IDF":
-                    value = input("Input the number of value that you want :")
-                    min_word_TD_IDF(value)
+                    min_word_TD_IDF()
                 elif dir == "max_word_TD_IDF":
-                    value = input("Input the number of value that you want :") 
-                    max_word_TD_IDF(value)
+                    max_word_TD_IDF()
                 elif dir == "word_most_repeated_Chirac":
                     word_most_repeated_Chirac()
                 elif dir == "talking_climate":
