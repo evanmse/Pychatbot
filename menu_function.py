@@ -29,7 +29,7 @@ def section():
     #################################################################
     #                         Section                               #
     #   1 - Documentation                                           #
-    #   2 - Functionality                                           #
+    #   2 - Functionalities                                         #
     #   3 - Test                                                    #
     #################################################################""")
     return
@@ -149,10 +149,10 @@ def sectionDocFunc():
 ##################################### Part Functionality #####################################################
 
 def searchFunctionality(search):
-    dic = {"min_word_file_TD_IDF":"# Functionality that gives the word(s) that are not important in a file, TD-IDF = 0",
+    dic = {"min_word_file_TD_IDF":"# Functionality that gives the word(s) that are not important in a file, TF-IDF = 0",
     "max_word_file_TD_IDF":"# Functionality that gives the most important words in a file",
-    "min_word_TD_IDF":"# Functionality that gives the word(s) with min TD-IDF in all text",
-    "max_word_TD_IDF":"# Functionality that gives the word(s) with max TD-IDF in all text",
+    "min_word_TD_IDF":"# Functionality that gives the word(s) with the lowest TF-IDF in all text (TF-IDF = 0)",
+    "max_word_TD_IDF":"# Functionality that gives the word(s) with the highest TF-IDF in all text",
     "word_most_repeated_Chirac":"# Functionality that gives the most repeated word(s) by Chirac",
     "talking_climate:":"# Functionality that gives the first president who talked about climate",
     "talking_nation":"# Functionality that gives which president(s) said the word \"Nation\" and the one who repeated it the most time",
@@ -175,9 +175,9 @@ def sectionFunc():
     #################################################################
     #                    Functionality                              #
     #   Please enter a number                                       #
-    #   1 - Search for functionality                                #
+    #   1 - Search for a functionality                              #
     #   2 - How to use ?                                            #
-    #   3 - Definition of function                                  #
+    #   3 - List of all the functionalities and what they do        #
     #   4 - Terminal                                                #
     #   5 - Exit                                                    #
     #################################################################
@@ -249,7 +249,7 @@ def sectionFuncFunc():
 
 def terminal():
     while True:
-                dir = input("# Terminal # :")
+                dir = input("# Terminal # : ")
 
                 if dir == "min_word_file_TD_IDF":
                     file = input("Give a name of file :")
@@ -258,11 +258,9 @@ def terminal():
                     file = input("Give a name of file")
                     min_word_file_TD_IDF(file)
                 elif dir == "min_word_TD_IDF":
-                    value = input("Input the number of value that you want :")
-                    min_word_TD_IDF(value)
+                    min_word_TD_IDF()
                 elif dir == "max_word_TD_IDF":
-                    value = input("Input the number of value that you want :") 
-                    max_word_TD_IDF(value)
+                    max_word_TD_IDF()
                 elif dir == "word_most_repeated_Chirac":
                     word_most_repeated_Chirac()
                 elif dir == "talking_climate":
@@ -290,10 +288,10 @@ def searchTest(search):
     "test_score_TF()":"# Test for score_TF",
     "path_cleaned_file":"# Function that gives to a cleaned file its path",
     "path_speeches_file":"# Function that gives to a speeches file its path",
-    "min_word_file_TD_IDF":"# Functionality that gives the word(s) that are not important in a file, TD-IDF = 0",
+    "min_word_file_TD_IDF":"# Functionality that gives the word(s) that are not important in a file, TF-IDF = 0",
     "max_word_file_TD_IDF":"# Functionality that gives the most important words in a file",
-    "min_word_TD_IDF":"# Functionality that gives the word(s) with min TD-IDF in all text",
-    "max_word_TD_IDF":"# Functionality that gives the word(s) with max TD-IDF in all text",
+    "min_word_TD_IDF":"# Functionality that gives the word(s) with the lowest TF-IDF in all text (TF-IDF = 0)",
+    "max_word_TD_IDF":"# Functionality that gives the word(s) with the highest TF-IDF in all text",
     "word_most_repeated_Chirac":"# Functionality that gives the most repeated word(s) by Chirac",
     "talking_climate:":"# Functionality that gives the first president who talked about climate",
     "talking_nation":"# Functionality that gives which president(s) said the word \"Nation\" and the one who repeated it the most time",
