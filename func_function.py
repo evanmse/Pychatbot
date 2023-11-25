@@ -110,11 +110,12 @@ def talking_nation():  # Functionality that gives which president(s) said the wo
 
 def all_word_president():  # Functionality that gives the words all presidents have said except the unimportant words
 
+
     files_name = os.listdir('./speeches')
     word_TF_IDF_zero = min_word_TD_IDF()
     mylist = []
 
-    for file in files_name[1:]:  # Regroup in a list all the words that presidents have said in common
+    for file in files_name:  # Regroup in a list all the words that presidents have said in common
         full_path = path_speeches_file(file)
 
         with open(full_path, 'r', encoding='utf-8') as f:
@@ -127,3 +128,5 @@ def all_word_president():  # Functionality that gives the words all presidents h
     word_in_common = [word for word in word_in_common if word not in word_TF_IDF_zero]
 
     return word_in_common
+
+print(all_word_president())

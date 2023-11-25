@@ -69,5 +69,35 @@ def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word i
     with open(full_path, 'r', encoding='utf-8') as f:
         content = cleanText(f.read().lower())
         dictionnary_scoreTF_word = score_TF(content)
+        if word not in list(dictionnary_scoreTF_word.keys()):
+            print("WORD NOT IN KEYS", "word :",word,":", document)
 
     return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
+
+def matrix_TD_IDF(directory):
+    list_final = []
+    rest = score_IDF('./cleaned')
+    for keys, value in rest.items():
+        temp = []
+        for file in list_of_files(directory,"txt"):
+
+            with open(path_cleaned_file(file), 'r', encoding="utf-8") as f:
+                content = cleanText(f.read())
+                dictionnary_scoreTF_word = score_TF(content)
+
+                if keys in list(dictionnary_scoreTF_word.keys()):
+                    temp.append(dictionnary_scoreTF_word[keys] * rest[keys])
+
+        list_final.append(temp)
+
+    for file in list_of_files():
+        print(file,"|")
+    for keys, value in rest.items():
+        print(keys)
+        for word in list_final:
+            for item in word:
+                print(list_final[word][item],"|")
+    return
+
+matrix_TD_IDF('./cleaned')
+
