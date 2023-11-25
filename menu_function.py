@@ -27,7 +27,7 @@ def launcher():
 def section():
     print("""
     #################################################################
-    #                         Section                               #
+    #                         Sections                              #
     #   1 - Documentation                                           #
     #   2 - Functionalities                                         #
     #   3 - Test                                                    #
@@ -97,7 +97,7 @@ def sectionDoc():
     #################################################################
     #                    Documentation                              #
     #   Please enter a number ?                                     #
-    #   1 - Search                                                  #
+    #   1 - Search for a function                                   #
     #   2 - How to use ?                                            #
     #   3 - List of all the functions and what they do              #
     #   4 - Exit                                                    #
@@ -127,8 +127,12 @@ def sectionDocHow():
     #                  How to use the documentation                 #
     #################################################################
     #                                                               #
-    # - You can search with search or command " :doc search"        #
-    # - Or you can see the documentation of all function            #
+    #                                                               #
+    # - You can search a function with "Search for a function"      #
+    #   in the section Documentation or you can use the             #
+    #   shortcut : " :doc search"                                   #
+    #                                                               #
+    # - Or you can see the documentation of all the functions       #
     #                                                               #
     #################################################################
                 """)
@@ -173,9 +177,9 @@ def searchFunctionality(search):
 def sectionFunc():
         print("""
     #################################################################
-    #                    Functionality                              #
+    #                    Functionalities                            #
     #   Please enter a number                                       #
-    #   1 - Search for a functionality                              #
+    #   1 - Search for a function                                   #
     #   2 - How to use ?                                            #
     #   3 - List of all the functionalities and what they do        #
     #   4 - Terminal                                                #
@@ -224,11 +228,16 @@ def sectionFuncHow():
     #                  How to use functionality                     #
     #################################################################
     #                                                               #
-    # - You can search with search or command " :func search"       #
-    # - Or you can see the documentation of all function with       #
-    # ":func func"                                                  #
+    # - You can search a function with "Search for a function"      #
+    #   in the section Functionalities, or you can use the          #
+    #   shortcut : " :func search"                                  #
+    #                                                               #
+    # - Or you can see the documentation of all the functions with  #
+    #   the shortcut : ":func func"                                 #
+    #                                                               #
     # - The best, is to use functionality in the terminal or with   #
-    #   ":terminal"                                                 #
+    #   the shortcut : ":terminal"                                  #
+    #                                                               #
     #################################################################
                 """)
     time.sleep(5)
@@ -360,11 +369,15 @@ def sectionTestHow():
     print("""
     #################################################################
     #                         How to use test                       #
-    #################################################################
+    #################################################################            
     #                                                               #
-    # - You can search with search or command " :test search"       #
+    # - You can search a function with "Search for a function"      #
+    #   in the section Test or you can use                          #
+    #   the shortcut : " :test search"                              #
+    #                                                               #
     # - Or you can see the documentation of all test with           #
-    # ":test func"                                                  #
+    #   the shortcut : ":test func"                                 #
+    #                                                               #
     # - The best, is to use functionality in the terminal or with   #
     #   ":test"                                                     #
     #################################################################
