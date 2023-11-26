@@ -99,8 +99,29 @@ def word_most_repeated_Chirac():  # Functionality that gives the most repeated w
 
 
 def talking_climate():  # Functionality that gives the first president who talked about climate
-    print("In development")
-    return
+    files_name = os.listdir('./speeches')
+
+    index_min = float('inf')  # index_min equals to infinity
+
+    for file in files_name:
+        full_path = path_speeches_file(file)
+
+        with open(full_path, 'r', encoding='utf-8') as f:
+            content = f.read().lower()
+            content = cleanText(content)
+            mylist = content.split(" ")
+
+            for i in range(mylist.count("")):
+                mylist.remove("")
+
+            for j in range(
+                    len(mylist)):  # If the index is inferior to the previous files, index is update and the president too
+                if ("climat" in mylist[j] or "écologie" in mylist[j]) and (j < index_min):
+                    index_min = j
+                    president_climate_ecology = extractNameFile(file)
+                    break
+
+    return president_climate_ecology
 
 
 def talking_nation():  # Functionality that gives which president(s) said the word "Nation" and the one who repeated it the most time
@@ -151,4 +172,3 @@ def all_word_president():  # Functionality that gives the words all presidents h
     word_in_common = [word for word in word_in_common if word not in word_TF_IDF_zero]
 
     return word_in_common
-
