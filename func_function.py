@@ -2,7 +2,6 @@ from tf_idf_function import score_TF, score_IDF
 from base_function import path_speeches_file, cleanText,listNamePres
 import os
 
-
 def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
     dictionnary_scoreIDF_word = score_IDF('./speeches')
     maxi = 0
@@ -121,22 +120,14 @@ def all_word_president():  # Functionality that gives the words all presidents h
 
         for file in files_name:  # Regroup in a list all the words that presidents have said in common
             full_path = path_speeches_file(file)
-
             if president in file:
-
                 with open(full_path, 'r', encoding='utf-8') as f:
                     content = content + f.read()
                     list_word = list(score_TF(content).keys())
 
         mylist.append(set(list_word))
 
-        if mylist == []:
-            mylist.append(set(list_word))
-
-    print(mylist)
-
     word_in_common = list(set.intersection(*mylist))  # Find the intersection between all the sets in my list
-
     word_in_common = [word for word in word_in_common if word not in word_TF_IDF_zero]
 
     return word_in_common

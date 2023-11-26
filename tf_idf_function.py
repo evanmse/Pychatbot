@@ -54,7 +54,7 @@ def score_IDF(directory):
         number_document = len(list_of_files('./speeches', '.txt'))
         proportion_document_containing_word = mydict[key] / number_document
         inversed_proportion_document_containing_word = 1 / proportion_document_containing_word
-        dictionnary_IDF[key] = math.log(inversed_proportion_document_containing_word) + 1
+        dictionnary_IDF[key] = math.log(inversed_proportion_document_containing_word)
 
     return dictionnary_IDF
 
@@ -140,4 +140,4 @@ def matrix_TD_IDF2(directory):
         print()
     return
 
-matrix_TD_IDF2("./cleaned")
+#matrix_TD_IDF2("./cleaned")
