@@ -7,7 +7,7 @@ This repository contains a Python script that provides a terminal-based interfac
 ### Functionalities:
 
 1. **min_word_TD_IDF**
-   - Command: `min_word_TF_IDF`
+   - Command: `min_word_TD_IDF`
    - Description: Function that gives the word(s) with TF-IDF = 0 in all the texts.
 
 2. **max_word_TD_IDF**
