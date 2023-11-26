@@ -22,16 +22,6 @@ def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
     return maxi
 
 
-def min_word_file_TD_IDF(file):  # Functionality that gives the word(s) that are not important in file, TD-IDF = 0
-    print("In development")
-    return
-
-
-def max_word_file_TD_IDF(file):  # Functionality that gives the most important words in file
-    print("In development")
-    return
-
-
 def min_word_TD_IDF():  # Functionality that gives the word(s) with TF-IDF = 0 in all text
     mylist = []
     dictionnary_scoreIDF_word = score_IDF('./speeches')
