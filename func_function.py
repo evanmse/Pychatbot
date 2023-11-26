@@ -152,5 +152,3 @@ def all_word_president():  # Functionality that gives the words all presidents h
 
     return word_in_common
 
-
-talking_nation()
