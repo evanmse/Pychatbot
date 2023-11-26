@@ -1,6 +1,7 @@
 from tf_idf_function import score_TF, score_IDF
-from base_function import path_speeches_file, cleanText,listNamePres
+from base_function import path_speeches_file, cleanText, listNamePres, extractNameFile
 import os
+
 
 def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
     dictionnary_scoreIDF_word = score_IDF('./speeches')
@@ -103,7 +104,27 @@ def talking_climate():  # Functionality that gives the first president who talke
 
 
 def talking_nation():  # Functionality that gives which president(s) said the word "Nation" and the one who repeated it the most time
-    print("In development")
+
+    files_name = os.listdir('./speeches')
+    maxi = 0
+    mylist = []
+
+    for file in files_name:
+        full_path = path_speeches_file(file)
+
+        with open(full_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            dictionary_scoreTF_word = score_TF(content)
+            list_words_content = list(dictionary_scoreTF_word.keys())
+
+        if "nation" in list_words_content:  # Verify if nation is a word in the file
+            mylist.append(extractNameFile(file))  # If yes, the name of the president is added to mylist
+            if dictionary_scoreTF_word["nation"] > maxi:  # Calculate how many times a certain president said the word
+                maxi = dictionary_scoreTF_word["nation"]
+                president_talked_most_nation = extractNameFile(file)
+
+    print("Presidents that talked about the nation : ", list(set(mylist)))
+    print("The president who said the most time the word nation :", president_talked_most_nation)
     return
 
 
@@ -113,7 +134,6 @@ def all_word_president():  # Functionality that gives the words all presidents h
     files_name = os.listdir('./speeches')
     word_TF_IDF_zero = min_word_TD_IDF()
     mylist = []
-
 
     for president in list_name_pres:
         content = ''
@@ -131,3 +151,4 @@ def all_word_president():  # Functionality that gives the words all presidents h
     word_in_common = [word for word in word_in_common if word not in word_TF_IDF_zero]
 
     return word_in_common
+
