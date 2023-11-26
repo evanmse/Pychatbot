@@ -1,7 +1,6 @@
 import math
 from base_function import *
 
-#directory = "./speeches"
 
 
 def score_TF(strings_chain):  # Function that associates to each word how many times it appeared in a string chain
@@ -31,7 +30,7 @@ def score_IDF(directory):
         full_path = path_speeches_file(file)  # Put in a variable the path of the file
 
         with open(full_path, 'r', encoding='utf-8') as f:
-            content = cleanText(f.read().lower())
+            content = cleanText(f.read())
             dictionnary_file = score_TF(content)
             mylist = list(set(mylist + list(dictionnary_file.keys())))  # List containing all the words of all the files
 
@@ -59,12 +58,10 @@ def score_IDF(directory):
     return dictionnary_IDF
 
 
-dictionnary_scoreIDF_word = score_IDF('./speeches') #Dictionary that contains the score_IDF of each word
-
-
 def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word in a certain document
     full_path = os.path.join('./speeches', document)
     word = cleanText(word.lower())
+    dictionnary_scoreIDF_word = score_IDF('./speeches') #Dictionary that contains the score_IDF of each word
 
     with open(full_path, 'r', encoding='utf-8') as f:
         content = cleanText(f.read().lower())
@@ -72,14 +69,13 @@ def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word i
 
     return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
 
-
 def matrix_TD_IDF(directory):
     list_final = []
     rest = score_IDF('./cleaned')
 
     for keys, value in rest.items():
         temp = []
-        for file in list_of_files(directory, "txt"):
+        for file in list_of_files(directory,"txt"):
 
             with open(path_cleaned_file(file), 'r', encoding="utf-8") as f:
                 content = cleanText(f.read())
@@ -93,21 +89,22 @@ def matrix_TD_IDF(directory):
 
         list_final.append(temp)
 
-    for file in list_of_files("./cleaned", "txt"):
-        print(file, "|", end=" ")
 
+    for file in list_of_files("./cleaned","txt"):
+        print(file,"|", end=" ")
+    
     for keys, value in rest.items():
         print(keys, end=" ")
 
     for word in range(len(list_final)):
-        for space in range(21 - len(list_final[word][-1])):
-            print(end=" ")
+        for space in range(18-len(list_final[word][-1])):
+                print(end=" ")
         print(list_final[word][-1], '|', end=" ")
         for item in range(len(list_final[word][:-1])):
-            for space in range(21 - len(str(list_final[word][item]))):
+            for space in range(18-len(str(list_final[word][item]))):
                 print(end=" ")
-            print(list_final[word][item], "|", end=" ")
+            print(list_final[word][item],"|", end=" ")
         print()
+
     return
 
-matrix_TD_IDF('./cleaned')
