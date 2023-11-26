@@ -6,75 +6,66 @@ This repository contains a Python script that provides a terminal-based interfac
 
 ### Functionalities:
 
-1. **max_score_TF_IDF**
-   - Command: `max_score_TF_IDF`
-   - Description: Computes and prints the word with the highest TF-IDF score in the entire corpus.
-
-2. **min_word_TF_IDF**
+1. **min_word_TD_IDF**
    - Command: `min_word_TF_IDF`
-   - Description: Identifies and prints the word(s) with the lowest TF-IDF score in all text (TF-IDF = 0).
+   - Description: Function that gives the word(s) with TF-IDF = 0 in all the texts.
 
-3. **max_word_TD_IDF**
+2. **max_word_TD_IDF**
    - Command: `max_word_TD_IDF`
-   - Description: Determines and prints the word(s) with the highest TF-IDF score in all text.
+   - Description: Function that gives the word(s) with the highest score TF-IDF in all the texts.
 
-4. **word_most_repeated_Chirac**
+3. **word_most_repeated_Chirac**
    - Command: `word_most_repeated_Chirac`
-   - Description: Finds and prints the most repeated word(s) by Chirac.
+   - Description: Function that finds and prints the most repeated word(s) by Chirac.
 
-5. **talking_climate**
+4. **talking_climate**
    - Command: `talking_climate`
-   - Description: Identifies the first president who talked about climate.
+   - Description: Function that identifies the first president who talks about climate or ecology.
 
-6. **talking_nation**
+5. **talking_nation**
    - Command: `talking_nation`
-   - Description: Determines which president(s) mentioned the word "Nation" and identifies the president who repeated it the most times.
+   - Description: Function that determines which president(s) mentioned the word 'Nation' and identifies the president who repeated it the most times.
 
-7. **all_word_president**
+6. **all_word_president**
    - Command: `all_word_president`
-   - Description: Prints the words spoken by all presidents, excluding unimportant words.
+   - Description: Function that gives the words said by all the presidents, excluding unimportant words.
 
-8. **test_extractNameFile**
-   - Command: `test_extractNameFile`
-   - Description: Executes a test for the `extractNameFile` functionality.
-
-9. **test_assocNamePres_Sarkozy**
-   - Command: `test_assocNamePres_Sarkozy`
-   - Description: Executes a test for the `assocNamePres` functionality, specifically for Sarkozy.
-
-10. **test_listNamePres**
-    - Command: `test_listNamePres`
-    - Description: Executes a test for the `listNamePres` functionality.
-
-11. **test_score_TF**
-    - Command: `test_score_TF`
-    - Description: Executes a test for the `score_TF` functionality.
-
-12. **test_lowerClean**
-    - Command: `test_lowerClean`
-    - Description: Executes a test for the `lowerClean` functionality.
-
-13. **test_clearFile**
-    - Command: `test_clearFile`
-    - Description: Executes a test for the `clearFile` functionality.
-
-14. **score_IDF**
+7. **score_IDF**
     - Command: `score_IDF`
-    - Description: Computes and prints the IDF score for a given directory of cleaned files.
+    - Description: Function that computes the IDF score of each word in the entire corpus.
 
-15. **score_TF_IDF**
+8. **score_TF_IDF**
     - Command: `score_TF_IDF`
-    - Description: Computes and prints the TF-IDF score for a given document and word selected by the user.
+    - Description: Function that returns the score TF-IDF of a certain word in a certain document.
 
-16. **matrix_TD_IDF**
+9. **matrix_TD_IDF**
     - Command: `matrix_TD_IDF`
-    - Description: Generates and prints the TF-IDF matrix.
+    - Description: Functions that computes and generates the matrix TF-IDF.
+      
+10. **score_TF**
+    - Command: `score_TF`
+    - Description: Function that associates to each word how many times it appeared in a string chain
+      
+11. **extractNameFile**
+    - Command: `extractNameFile`
+    - Description: Function that extracts the name of the president in the name of a certain file.
+
+12. **assocNamePres**
+    - Command: `assocNamePres`
+    - Description: Function that associates to a president name, its first name.
+      
+13. **listNamePres**
+    - Command: `lowerClean`
+    - Description: Function used to convert the texts in the 8 files to lower case and store the contents in new files.
+
+14. **cleanText*
+    - Command: `cleanText`
+    - Description: Function used to remove any punctuation characters of each file of the cleaned directory.
 
 ### Additional Functions:
 
 - ** Search Functionality in the terminal**
-  - A dictionary maps search terms to their respective functionality descriptions.
-  - You just need to enter the first three letters of the functionality you want to search for
+  -You can call for a function listed in the documentation in order to test it in the terminal.
 
 Feel free to explore and analyze text data using this versatile terminal interface!
 
