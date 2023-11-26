@@ -163,6 +163,7 @@ def terminal():
                     print()
                 elif dir == "matrix_TD_IDF":
                     print()
+                    print("This function will take 2 minutes 30 seconds since for each word on the corpus, we are calculating its score TF-IDF on each file")
                     matrix_TD_IDF('./cleaned')
                     print()
                 elif dir == "extractNameFile":
