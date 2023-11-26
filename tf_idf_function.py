@@ -105,4 +105,6 @@ def matrix_TD_IDF(directory):
                 print(end=" ")
             print(list_final[word][item],"|", end=" ")
         print()
+
     return
+
