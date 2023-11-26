@@ -48,34 +48,30 @@ def menu():
     return dir
 
 def searchFunctionality(search):
-    dic = {"list_of_files()":"# Function that gives the list of files in a directory, Example : /speeches",
-    "extractNameFile()":"# Function that extracts the name of the president in the name of a certain file",
-    "listNamePres()":"# Function that displays the list of the names of the presidents without duplications",
-    "assocNamePres()":"# Function that associates to a president name, its first name",
-    "lowerClean()":"# Function that transforms the content of a file into lowercase",
-    "clearFile()":"# Main function in order to clean a certain file",
-    "cleanText()":"# Sub-Function that cleans a text by removing the punctuations and the accents",
-    "path_cleaned_file()":"# Function that gives to a cleaned file its path",
-    "path_speeches_file()":"# Function that gives to a speeches file its path",
-    "min_word_file_TD_IDF":"# Functionality that gives the word(s) that are not important in a file, TF-IDF = 0",
-    "max_word_file_TD_IDF":"# Functionality that gives the most important words in a file",
-    "min_word_TD_IDF":"# Functionality that gives the word(s) with the lowest TF-IDF in all text (TF-IDF = 0)",
-    "max_word_TD_IDF":"# Functionality that gives the word(s) with the highest TF-IDF in all text",
-    "word_most_repeated_Chirac":"# Functionality that gives the most repeated word(s) by Chirac",
-    "talking_climate:":"# Functionality that gives the first president who talked about climate",
-    "talking_nation":"# Functionality that gives which president(s) said the word \"Nation\" and the one who repeated it the most time",
-    "all_word_president":"# Functionality that gives the words all presidents have said except the unimportant words",
-    "test_extractNameFile()":"# Test for function extractNameFile ",
-    "test_assocNamePres()":"# Test for assocNamePres, for Sarkozy",
-    "test_listNamePres()":" # Test for listNamePres ",
-    "test_score_TF()":"# Test for score_TF",
-    "path_cleaned_file":"# Function that gives to a cleaned file its path",
-    "path_speeches_file":"# Function that gives to a speeches file its path",
-    }
+    dic = {
+    "max_score_TF_IDF": "Computes and prints the word with the highest TF-IDF score in the entire corpus.",
+    "min_word_TF_IDF": "Identifies and prints the word(s) with the lowest TF-IDF score in all text (TF-IDF = 0).",
+    "max_word_TD_IDF": "Determines and prints the word(s) with the highest TF-IDF score in all text.",
+    "word_most_repeated_Chirac": "Finds and prints the most repeated word(s) by Chirac.",
+    "talking_climate": "Identifies the first president who talked about climate.",
+    "talking_nation": "Determines which president(s) mentioned the word 'Nation' and identifies the president who repeated it the most times.",
+    "all_word_president": "Prints the words spoken by all presidents, excluding unimportant words.",
+    "test_extractNameFile": "Executes a test for the `extractNameFile` functionality.",
+    "test_assocNamePres_Sarkozy": "Executes a test for the `assocNamePres` functionality, specifically for Sarkozy.",
+    "test_listNamePres": "Executes a test for the `listNamePres` functionality.",
+    "test_score_TF": "Executes a test for the `score_TF` functionality.",
+    "test_lowerClean": "Executes a test for the `lowerClean` functionality.",
+    "test_clearFile": "Executes a test for the `clearFile` functionality.",
+    "score_IDF": "Computes and prints the IDF score for a given directory of cleaned files.",
+    "score_TF_IDF": "Computes and prints the TF-IDF score for a given document and word selected by the user.",
+    "matrix_TD_IDF": "Generates and prints the TF-IDF matrix.",
+    "searchFunctionality": "A dictionary (`dic`) maps search terms to their respective functionality descriptions.",
+    "exit": "To exit the terminal, use the command `exit`."}
+
     if search == "all":
         for keys, value in dic.items():
             print("Function : {}".format(keys))
-            print("Function : {}".format(value)) 
+            print("Definition : {}".format(value)) 
         return
     else:
         for keys, value in dic.items():
@@ -94,28 +90,24 @@ def terminal():
     while True:
                 dir = input("# Terminal # : ")
 
-                if dir == "min_word_file_TD_IDF":
-                    file = input("Give a name of file :")
-                    min_word_file_TD_IDF(file)
-                elif dir == "min_word_file_TD_IDF":
-                    file = input("Give a name of file")
-                    min_word_file_TD_IDF(file)
-                elif dir == "min_word_TD_IDF":
-                    min_word_TD_IDF()
+                if dir == "max_score_TF_IDF":
+                    print(max_score_TF_IDF())
+                elif dir == "min_word_TF_IDF":
+                    print(min_word_TD_IDF())
                 elif dir == "max_word_TD_IDF":
-                    max_word_TD_IDF()
+                    print(max_word_TD_IDF())
                 elif dir == "word_most_repeated_Chirac":
-                    word_most_repeated_Chirac()
+                    print(word_most_repeated_Chirac())
                 elif dir == "talking_climate":
-                    talking_climate()
+                    print(talking_climate())
                 elif dir == "talking_nation":
                     talking_nation()
                 elif dir == "all_word_president":
-                    all_word_president()
+                    print(all_word_president())
                 elif dir == "test_extractNameFile":
                     test_extractNameFile()
-                elif dir == "test_assocNamePres":
-                    test_assocNamePres()
+                elif dir == "test_assocNamePres_Sarkozy":
+                    test_assocNamePres_Sarkozy()
                 elif dir == "test_listNamePres":
                     test_listNamePres()
                 elif dir == "test_score_TF":
@@ -124,25 +116,16 @@ def terminal():
                     test_lowerClean()
                 elif dir == "test_clearFile":
                     test_clearFile()
-                elif dir == "min_word_file_TD_IDF":
-                    file = input("Give a name of file")
-                    min_word_file_TD_IDF(file)
-                elif dir == "max_word_file_TD_IDF":
-                    file = input("Give a name of file")
-                    max_word_file_TD_IDF(file)
-                elif dir == "min_word_TD_IDF":
-                    min_word_TD_IDF()
-                elif dir == "max_word_TD_IDF":
-                    max_word_TD_IDF()
-                elif dir == "word_most_repeated_Chirac":
-                    word_most_repeated_Chirac()
-                elif dir == "talking_climate":
-                    talking_climate()
-                elif dir == "talking_nation":
-                    talking_nation()
-                elif dir == "all_word_president":
-                    all_word_president()
-                elif dir == ":exit":
+                elif dir == "score_IDF":
+                    print(score_IDF("./cleaned"))
+                elif dir == "score_TF_IDF":
+                    doc = input("Select a document :")
+                    word = input("Select a word :")
+                    print(score_TF_IDF(doc, word))
+                elif dir == "matrix_TD_IDF":
+                    file = input("Select a directory :")
+                    matrix_TD_IDF(file)
+                elif dir == "exit":
                         print("Exiting the Terminal. Goodbye!")
                         section()
                         break

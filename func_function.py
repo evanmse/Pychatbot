@@ -162,3 +162,4 @@ def all_word_president():  # Functionality that gives the words all presidents h
     word_in_common = [word for word in word_in_common if word not in word_TF_IDF_zero]
 
     return word_in_common
+

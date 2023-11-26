@@ -15,7 +15,7 @@ def test_extractNameFile():    # Test for function extractNameFile
     print("Président names:", president_names) #Print of the list
     return
 
-def test_assocNamePres(): # Test for assocNamePres, for "Sarkozy" 
+def test_assocNamePres_Sarkozy(): # Test for assocNamePres, for "Sarkozy" 
     print("### Test for assocNamePres ### ")
     print(assocNamePres("Sarkozy"))
     return
@@ -26,7 +26,7 @@ def test_listNamePres():   # Test for listNamePres :
     return
 
 def test_score_TF(): # Test for score_TF
-    print("### Test for score_TF ### ")
+    print("### Test for score_TF for Nomination_Chirac1.txt ### ")
     with open('./speeches/Nomination_Chirac1.txt', 'r', encoding='utf-8') as file:
             file_content = file.read()
             print(score_TF(file_content))
@@ -36,10 +36,12 @@ def test_lowerClean(): # Test for lowerClean :
     print("### Test for function lowerClean ### ")
     for name in list_of_files(directory, "txt"):
         lowerClean(name)
+    print("Text is now in lowercase")
     return
 
 def test_clearFile():  # Test for clearFile :
     print("### Test for function clearFile ### ")
     for name in list_of_files("./cleaned", "txt"):
         clearFile(name)
+    print("Text is now clear")
     return
