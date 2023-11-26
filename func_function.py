@@ -1,5 +1,5 @@
 from tf_idf_function import score_TF, score_IDF
-from base_function import path_speeches_file, cleanText,listNamePres
+from base_function import path_speeches_file, cleanText, listNamePres, extractNameFile
 import os
 
 
@@ -20,16 +20,6 @@ def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
                 maxi = dictionnary_scoreTF_word[i] * dictionnary_scoreIDF_word[i]
 
     return maxi
-
-
-def min_word_file_TD_IDF(file):  # Functionality that gives the word(s) that are not important in file, TD-IDF = 0
-    print("In development")
-    return
-
-
-def max_word_file_TD_IDF(file):  # Functionality that gives the most important words in file
-    print("In development")
-    return
 
 
 def min_word_TD_IDF():  # Functionality that gives the word(s) with TF-IDF = 0 in all text
@@ -99,12 +89,53 @@ def word_most_repeated_Chirac():  # Functionality that gives the most repeated w
 
 
 def talking_climate():  # Functionality that gives the first president who talked about climate
-    print("In development")
-    return
+    files_name = os.listdir('./speeches')
+
+    index_min = float('inf')  # index_min equals to infinity
+
+    for file in files_name:
+        full_path = path_speeches_file(file)
+
+        with open(full_path, 'r', encoding='utf-8') as f:
+            content = f.read().lower()
+            content = cleanText(content)
+            mylist = content.split(" ")
+
+            for i in range(mylist.count("")):
+                mylist.remove("")
+
+            for j in range(
+                    len(mylist)):  # If the index is inferior to the previous files, index is update and the president too
+                if ("climat" in mylist[j] or "écologie" in mylist[j]) and (j < index_min):
+                    index_min = j
+                    president_climate_ecology = extractNameFile(file)
+                    break
+
+    return president_climate_ecology
 
 
 def talking_nation():  # Functionality that gives which president(s) said the word "Nation" and the one who repeated it the most time
-    print("In development")
+
+    files_name = os.listdir('./speeches')
+    maxi = 0
+    mylist = []
+
+    for file in files_name:
+        full_path = path_speeches_file(file)
+
+        with open(full_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            dictionary_scoreTF_word = score_TF(content)
+            list_words_content = list(dictionary_scoreTF_word.keys())
+
+        if "nation" in list_words_content:  # Verify if nation is a word in the file
+            mylist.append(extractNameFile(file))  # If yes, the name of the president is added to mylist
+            if dictionary_scoreTF_word["nation"] > maxi:  # Calculate how many times a certain president said the word
+                maxi = dictionary_scoreTF_word["nation"]
+                president_talked_most_nation = extractNameFile(file)
+
+    print("Presidents that talked about the nation : ", list(set(mylist)))
+    print("The president who said the most time the word nation :", president_talked_most_nation)
     return
 
 
@@ -115,30 +146,19 @@ def all_word_president():  # Functionality that gives the words all presidents h
     word_TF_IDF_zero = min_word_TD_IDF()
     mylist = []
 
-
     for president in list_name_pres:
         content = ''
 
         for file in files_name:  # Regroup in a list all the words that presidents have said in common
             full_path = path_speeches_file(file)
-
             if president in file:
-
                 with open(full_path, 'r', encoding='utf-8') as f:
                     content = content + f.read()
                     list_word = list(score_TF(content).keys())
 
         mylist.append(set(list_word))
 
-        if mylist == []:
-            mylist.append(set(list_word))
-
-    print(mylist)
-
     word_in_common = list(set.intersection(*mylist))  # Find the intersection between all the sets in my list
-
     word_in_common = [word for word in word_in_common if word not in word_TF_IDF_zero]
 
     return word_in_common
-
-print(all_word_president())
