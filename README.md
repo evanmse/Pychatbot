@@ -58,7 +58,7 @@ This repository contains a Python script that provides a terminal-based interfac
     - Command: `lowerClean`
     - Description: Function used to convert the texts in the 8 files to lower case and store the contents in new files.
 
-14. **cleanText*
+14. **cleanText**
     - Command: `cleanText`
     - Description: Function used to remove any punctuation characters of each file of the cleaned directory.
 
