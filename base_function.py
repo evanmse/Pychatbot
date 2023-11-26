@@ -31,7 +31,7 @@ def listNamePres(inputFile, extension):  #Function that displays the list of the
 
     return list(set(list_name_pres))
 
-def assocNamePres(namePresident): # Function that associate to a president name, its first name
+def assocNamePres(namePresident): # Function that associates to a president name, its first name
     dictPres = {'Chirac': 'Jacques', 'Giscard dEstaing': 'Valéry', 'Hollande': 'François', 'Macron': 'Emmanuel', 'Mitterrand': 'François','Sarkozy': 'Nicolas' }
     return dictPres[namePresident]
 

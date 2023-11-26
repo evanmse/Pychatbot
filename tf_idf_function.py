@@ -20,7 +20,7 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
     return dictionary
 
 
-def score_IDF(directory):
+def score_IDF(directory):   #Function that computes the IDF score of each word in the entire corpus
     files_name = os.listdir(directory)
     mylist = []
     mydict = {}
@@ -69,13 +69,14 @@ def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word i
 
     return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
 
-def matrix_TD_IDF(directory):
+
+def matrix_TD_IDF(directory):       #Calculate the matrix TF-IDF
     list_final = []
     rest = score_IDF('./cleaned')
 
-    for keys, value in rest.items():
+    for keys, value in rest.items():     #Creation of the sub-lists in the matrix
         temp = []
-        for file in list_of_files(directory,"txt"):
+        for file in list_of_files(directory, "txt"):
 
             with open(path_cleaned_file(file), 'r', encoding="utf-8") as f:
                 content = cleanText(f.read())
@@ -89,22 +90,17 @@ def matrix_TD_IDF(directory):
 
         list_final.append(temp)
 
+    for file in list_of_files("./cleaned", "txt"):
+        print(file, "|", end=" ")
 
-    for file in list_of_files("./cleaned","txt"):
-        print(file,"|", end=" ")
-    
-    for keys, value in rest.items():
-        print(keys, end=" ")
-
-    for word in range(len(list_final)):
-        for space in range(18-len(list_final[word][-1])):
-                print(end=" ")
+    for word in range(len(list_final)):                         #Creation of the visual of the matrix
+        for space in range(23 - len(list_final[word][-1])):
+            print(end=" ")
         print(list_final[word][-1], '|', end=" ")
         for item in range(len(list_final[word][:-1])):
-            for space in range(18-len(str(list_final[word][item]))):
+            for space in range(21 - len(str(list_final[word][item]))):
                 print(end=" ")
-            print(list_final[word][item],"|", end=" ")
+            print(list_final[word][item], "|", end=" ")
         print()
 
     return
-

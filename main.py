@@ -2,7 +2,7 @@ from base_function import *
 from tf_idf_function import *
 from menu_function import *
 
-if __name__ == "__main__":
+if __name__ == "__main__":                      #Backbone of the menu
         for name in list_of_files("./speeches", "txt"):
                 lowerClean(name)
         for name in list_of_files("./cleaned", "txt"):
