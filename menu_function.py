@@ -142,19 +142,24 @@ def terminal():
                     print()
                     doc = input("Select a document : ")
                     word = input("Select a word : ")
-                    print(score_TF_IDF(doc, word))
+                    try:
+                        print(score_TF_IDF(doc, word))
+                    except:
+                        print("The name of the document is wrong")
                     print()
                 elif dir == "score_TF":
                     print()
                     doc = input("Select a document : ")
+                    try:
+                        full_path = path_speeches_file(doc)
 
-                    full_path = path_speeches_file(doc)
+                        with open(full_path, 'r', encoding='utf-8') as f:
+                            content = f.read()
+                            dictionary_scoreTF_word = score_TF(content.lower())
 
-                    with open(full_path, 'r', encoding='utf-8') as f:
-                        content = f.read()
-                        dictionary_scoreTF_word = score_TF(content.lower())
-
-                    print(dictionary_scoreTF_word)
+                        print(dictionary_scoreTF_word)
+                    except:
+                        print("The name of the document is wrong")
                     print()
                 elif dir == "matrix_TD_IDF":
                     print()
@@ -163,12 +168,18 @@ def terminal():
                 elif dir == "extractNameFile":
                     print()
                     file = input("Give me the name of a file : ")
-                    print(extractNameFile(file))
+                    try:
+                        print(extractNameFile(file))
+                    except:
+                        print("The name of the file is wrong")
                     print()
                 elif dir == "assocNamePres":
                     print()
                     president_name = input("Give me the name of a president from the corpus : ")
-                    print(assocNamePres(president_name))
+                    try:
+                        print(assocNamePres(president_name))
+                    except:
+                        print("The name of the president is not correctly written or there is no such name in the corpus")
                     print()
                 elif dir == "listNamePres":
                     print()
