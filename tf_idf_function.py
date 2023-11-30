@@ -21,7 +21,7 @@ def score_TF(strings_chain):  # Function that associates to each word how many t
 
 
 def score_IDF(directory):   #Function that computes the IDF score of each word in the entire corpus
-    files_name = os.listdir(directory)
+    files_name = list_of_files(directory, 'txt')
     mylist = []
     mydict = {}
     dictionnary_IDF = {}

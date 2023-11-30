@@ -1,12 +1,12 @@
 from tf_idf_function import score_TF, score_IDF
-from base_function import path_speeches_file, cleanText, listNamePres, extractNameFile
+from base_function import path_speeches_file, cleanText, listNamePres, extractNameFile, list_of_files
 import os
 
 
 def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
     dictionnary_scoreIDF_word = score_IDF('./speeches')
     maxi = 0
-    files_name = os.listdir('./speeches')
+    files_name = list_of_files('./speeches', 'txt')
 
     for file in files_name:
         full_path = path_speeches_file(file)
@@ -15,7 +15,7 @@ def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
             content = f.read()
             dictionnary_scoreTF_word = score_TF(content)
 
-        for i in dictionnary_scoreTF_word:                  # Calculate the maximum TF-IDF score
+        for i in dictionnary_scoreTF_word:  # Calculate the maximum TF-IDF score
             if (dictionnary_scoreTF_word[i] * dictionnary_scoreIDF_word[i]) > maxi:
                 maxi = dictionnary_scoreTF_word[i] * dictionnary_scoreIDF_word[i]
 
@@ -26,7 +26,7 @@ def min_word_TD_IDF():  # Functionality that gives the word(s) with TF-IDF = 0 i
     mylist = []
     dictionnary_scoreIDF_word = score_IDF('./speeches')
 
-    files_name = os.listdir('./speeches')
+    files_name = list_of_files('./speeches','txt')
 
     for file in files_name:
         full_path = path_speeches_file(file)
@@ -47,7 +47,7 @@ def max_word_TD_IDF():  # Functionality that gives the word(s) with max TD-IDF i
 
     dictionnary_scoreIDF_word = score_IDF('./speeches')
     maxi = max_score_TF_IDF()
-    files_name = os.listdir('./speeches')
+    files_name = list_of_files('./speeches', 'txt')
     mylist = []
 
     for file in files_name:
@@ -57,17 +57,17 @@ def max_word_TD_IDF():  # Functionality that gives the word(s) with max TD-IDF i
             content = f.read()
             dictionnary_scoreTF_word = score_TF(content)
 
-        for i in dictionnary_scoreTF_word:      # Calculate the maximum TF-IDF score
+        for i in dictionnary_scoreTF_word:  # Calculate the maximum TF-IDF score
             if (dictionnary_scoreTF_word[i] * dictionnary_scoreIDF_word[i]) == maxi:
                 mylist.append(i)
 
     return list(set(mylist))
 
 
-def word_most_repeated_Chirac():    # Functionality that gives the most repeated word by Chirac
+def word_most_repeated_Chirac():  # Functionality that gives the most repeated word by Chirac
 
     content = ''
-    files_name = os.listdir('./speeches')
+    files_name = list_of_files('./speeches', 'txt')
     mylist_Chirac = [text for text in files_name if 'Chirac' in text]
     mylist = []
 
@@ -88,10 +88,10 @@ def word_most_repeated_Chirac():    # Functionality that gives the most repeated
     return mylist
 
 
-def talking_climate():      # Functionality that gives the first president who talked about climate
-    files_name = os.listdir('./speeches')
+def talking_climate():  # Functionality that gives the first president who talked about climate
+    files_name = list_of_files('./speeches', 'txt')
 
-    index_min = float('inf')     # index_min equals to infinity
+    index_min = float('inf')  # index_min equals to infinity
 
     for file in files_name:
         full_path = path_speeches_file(file)
@@ -116,7 +116,7 @@ def talking_climate():      # Functionality that gives the first president who t
 
 def talking_nation():  # Functionality that gives which president(s) said the word "Nation" and the one who repeated it the most time
 
-    files_name = os.listdir('./speeches')
+    files_name = list_of_files('./speeches', 'txt')
     maxi = 0
     mylist = []
 
@@ -128,9 +128,9 @@ def talking_nation():  # Functionality that gives which president(s) said the wo
             dictionary_scoreTF_word = score_TF(content)
             list_words_content = list(dictionary_scoreTF_word.keys())
 
-        if "nation" in list_words_content:          # Verify if nation is a word in the file
-            mylist.append(extractNameFile(file))        # If yes, the name of the president is added to mylist
-            if dictionary_scoreTF_word["nation"] > maxi:        # Calculate how many times a certain president said the word
+        if "nation" in list_words_content:  # Verify if nation is a word in the file
+            mylist.append(extractNameFile(file))  # If yes, the name of the president is added to mylist
+            if dictionary_scoreTF_word["nation"] > maxi:  # Calculate how many times a certain president said the word
                 maxi = dictionary_scoreTF_word["nation"]
                 president_talked_most_nation = extractNameFile(file)
 
@@ -142,14 +142,14 @@ def talking_nation():  # Functionality that gives which president(s) said the wo
 def all_word_president():  # Functionality that gives the words all presidents have said except the unimportant words
 
     list_name_pres = listNamePres("./speeches", "txt")
-    files_name = os.listdir('./speeches')
+    files_name = list_of_files('./speeches', 'txt')
     word_TF_IDF_zero = min_word_TD_IDF()
     mylist = []
 
     for president in list_name_pres:
         content = ''
 
-        for file in files_name:         # Regroup in a list all the words that presidents have said in common
+        for file in files_name:  # Regroup in a list all the words that presidents have said in common
             full_path = path_speeches_file(file)
             if president in file:
                 with open(full_path, 'r', encoding='utf-8') as f:
@@ -158,8 +158,9 @@ def all_word_president():  # Functionality that gives the words all presidents h
 
         mylist.append(set(list_word))
 
-    word_in_common = list(set.intersection(*mylist))        # Find the intersection between all the sets in my list
+    word_in_common = list(set.intersection(*mylist))  # Find the intersection between all the sets in my list
     word_in_common = [word for word in word_in_common if word not in word_TF_IDF_zero]
 
     return word_in_common
 
+print(all_word_president())
