@@ -206,13 +206,3 @@ def terminal():
                         print("!! Invalid choice !!")
     return
 
-"""
-"extractNameFile": "Function that extracts the name of the president in the name of a certain file",
-"assocNamePres": "Function that associates to a president name, its first name",
-"listNamePres": "Function that displays the list of the names of the presidents without duplications",
-"lowerClean": "Function used to convert the texts in the 8 files to lower case and store the contents in new files",
-"cleanText": "Function used to remove any punctuation characters of each file of the cleaned directory",
-"""
-
-     
-
