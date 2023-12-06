@@ -1,7 +1,5 @@
 from tf_idf_function import score_TF, score_IDF
 from base_function import path_speeches_file, cleanText, listNamePres, extractNameFile, list_of_files
-import os
-
 
 def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
     dictionnary_scoreIDF_word = score_IDF('./speeches')
