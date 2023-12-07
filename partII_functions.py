@@ -1,5 +1,5 @@
-from tf_idf_function import score_IDF
-from base_function import cleanText
+from tf_idf_function import *
+from base_function import *
 
 def question_tokenization(question):
     """
@@ -28,3 +28,15 @@ def question_words_corpus(question):
 
     return list(set(words_corpus) & set(words_in_question))
 
+def question_TF_IDF(question): #TD_IDF Question
+    TF =  score_TF(question)
+    print(TF)
+    IDF = score_IDF("./cleaned")
+    TF_IDF = {}
+    for value1, item1 in TF.items():
+            for value2, item2 in IDF.items():
+                if value1 == value2:
+                    TF_IDF[value1] = TF[value2]*IDF[value1]
+                if value1 not in IDF:
+                    TF_IDF[value1] = 0
+    return TF_IDF

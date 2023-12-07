@@ -1,9 +1,14 @@
 from base_function import *
 from tf_idf_function import *
 from menu_function import *
+from partII_functions import *
 
-if __name__ == "__main__":                      #Backbone of the menu
-        for name in list_of_files("./speeches", "txt"):
+if __name__ == "__main__":
+        print("### Test TD_IDF Question ###")
+        question = "president manger nation manger nation jul"
+        print(question_TF_IDF(question))
+
+        for name in list_of_files("./speeches", "txt"):  #Backbone of the menu
                 lowerClean(name)
         for name in list_of_files("./cleaned", "txt"):
                 clearFile(name)
