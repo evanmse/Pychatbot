@@ -68,6 +68,7 @@ def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word i
         dictionnary_scoreTF_word = score_TF(content)
 
     return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
+    
 def matrix_TD_IDF(directory):  # Calculate the matrix TF-IDF
     list_final = []
     rest = score_IDF('./cleaned')
