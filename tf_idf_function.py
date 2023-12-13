@@ -53,7 +53,7 @@ def score_IDF(directory):   #Function that computes the IDF score of each word i
         number_document = len(list_of_files('./speeches', '.txt'))
         proportion_document_containing_word = mydict[key] / number_document
         inversed_proportion_document_containing_word = 1 / proportion_document_containing_word
-        dictionnary_IDF[key] = math.log(inversed_proportion_document_containing_word)
+        dictionnary_IDF[key] = math.log10(inversed_proportion_document_containing_word)
 
     return dictionnary_IDF
 
@@ -68,39 +68,46 @@ def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word i
         dictionnary_scoreTF_word = score_TF(content)
 
     return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
-
-
-def matrix_TD_IDF(directory):       #Calculate the matrix TF-IDF
+def matrix_TD_IDF(directory):  # Calculate the matrix TF-IDF
     list_final = []
     rest = score_IDF('./cleaned')
+    list_IDF_keys = sorted(list(rest.keys()))
+    state_first_loop = True
 
-    for keys, value in rest.items():     #Creation of the sub-lists in the matrix
-        temp = []
-        for file in list_of_files(directory, "txt"):
+    for file in list_of_files(directory, "txt"):
+        line_list_final = -1
+        with open(path_cleaned_file(file), 'r', encoding="UTF-8") as f:
+            content = cleanText(f.read())
+            dictionnary_scoreTF_word = score_TF(content)
 
-            with open(path_cleaned_file(file), 'r', encoding="utf-8") as f:
-                content = cleanText(f.read())
-                dictionnary_scoreTF_word = score_TF(content)
+            for keys in list_IDF_keys:
+                line_list_final += 1
+                if state_first_loop:
+                    mylist = [keys]
+                    if keys in set(dictionnary_scoreTF_word.keys()):
+                        mylist.append(dictionnary_scoreTF_word[keys] * rest[keys])
+                    else:
+                        mylist.append(0)
 
-                if keys in set(dictionnary_scoreTF_word.keys()):
-                    temp.append(dictionnary_scoreTF_word[keys] * rest[keys])
+                    list_final.append(mylist)
                 else:
-                    temp.append(0)
-        temp.append(keys)
+                    if keys in set(dictionnary_scoreTF_word.keys()):
+                        list_final[line_list_final].append(dictionnary_scoreTF_word[keys] * rest[keys])
+                    else:
+                        list_final[line_list_final].append(0)
 
-        list_final.append(temp)
+            state_first_loop = False
 
     for file in list_of_files("./cleaned", "txt"):
         print(file, "|", end=" ")
 
-    for word in range(len(list_final)):                         #Creation of the visual of the matrix
-        for space in range(23 - len(list_final[word][-1])):
+    for word in range(len(list_final)):  # Creation of the visual of the matrix
+        for space in range(23 - len(list_final[word][0])):
             print(end=" ")
-        print(list_final[word][-1], '|', end=" ")
-        for item in range(len(list_final[word][:-1])):
+        print(list_final[word][0], '|', end=" ")
+        for item in range(1, len(list_final[word][1:]) + 1):
             for space in range(21 - len(str(list_final[word][item]))):
                 print(end=" ")
             print(list_final[word][item], "|", end=" ")
         print()
-
     return
