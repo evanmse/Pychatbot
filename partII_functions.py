@@ -31,14 +31,17 @@ def question_words_corpus(question):
 
 def question_TF_IDF(question): #Function that returns the TF-IDF vector of the question
     TF =  score_TF(question)
+    list_word_question = list(TF.keys())
     IDF = score_IDF("./cleaned")
     TF_IDF = {}
+
+    for value in list_word_question:
+        if value not in list(IDF.keys()):
+            del TF[value]
+
     for value1, item1 in TF.items():
-        for value2, item2 in IDF.items():
-            if value1 == value2:
-                TF_IDF[value1] = TF[value2]*IDF[value1]
-            elif value1 not in IDF:
-                TF_IDF[value1] = 0
+        TF_IDF[value1] = item1 * IDF[value1]
+
     return TF_IDF
 
 def scalar(vectA, vectB):       #Function that calculates the scalar product of two vectors
@@ -71,24 +74,24 @@ def most_relevant_doc(matrix_TF_IDF, question_TF_IDF, files_name):
     index = 0
     similar_quantity = -1
 
-    visual_matrix_TD_IDF(matrix_TF_IDF)
 
     for file in files_name:
         index += 1
         document_vector = []
 
+        with open(path_cleaned_file(file), 'r', encoding = 'utf-8') as f :
+            content = cleanText(f.read().lower())
+            TF = score_TF(content)
+            list_of_word_document = list(TF.keys())
 
-        for j in range(len(list(IDF.keys()))):
-            document_vector.append(matrix_TF_IDF[j][index])
+            for word in list(question_TF_IDF.keys()):
+                if word in list_of_word_document:
+                    document_vector.append(TF[word] * IDF[word])
+                else:
+                    document_vector.append(0)
 
-        print(document_vector)
-        print()
-
-        if similar_quantity < similarity(list(question_TF_IDF.values()), document_vector):
-            similar_quantity = similarity(list(question_TF_IDF.values()), document_vector)
-            name_document = file
-
+            if similar_quantity < similarity(list(question_TF_IDF.values()), document_vector):
+                similar_quantity = similarity(list(question_TF_IDF.values()), document_vector)
+                name_document = file
 
     return name_document
-
-print(most_relevant_doc(matrix_TD_IDF('./cleaned'), question_TF_IDF('"Peux-tu me dire comment une nation peut-elle prendre soin du climat ?'), list_of_files('./cleaned', 'txt')))
