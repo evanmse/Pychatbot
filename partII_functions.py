@@ -29,40 +29,69 @@ def question_words_corpus(question):
 
     return list(set(words_corpus) & set(words_in_question))
 
-def question_TF_IDF(question): #TD_IDF Question
+def question_TF_IDF(question): #Function that returns the TF-IDF vector of the question
     TF =  score_TF(question)
+    list_word_question = list(TF.keys())
     IDF = score_IDF("./cleaned")
     TF_IDF = {}
+
+    for value in list_word_question:
+        if value not in list(IDF.keys()):
+            del TF[value]
+
     for value1, item1 in TF.items():
-            for value2, item2 in IDF.items():
-                if value1 == value2:
-                    TF_IDF[value1] = TF[value2]*IDF[value1]
-                if value1 not in IDF:
-                    TF_IDF[value1] = 0
+        TF_IDF[value1] = item1 * IDF[value1]
+
     return TF_IDF
 
-def scalar(vectA, vectB):
+def scalar(vectA, vectB):       #Function that calculates the scalar product of two vectors
     n = len(vectA)
     scal = 0
     for i in range(n):
         scal += (vectA[i]*vectB[i])
     return scal
 
-def norm(vectA):
+def norm(vectA:list):       #Function that calculates the norm of a vector
     n =len(vectA)
     norm = 0
     for i in range(n):
         norm += vectA[i]**2
     return sqrt(norm)
 
-def similarity(vectA, vectB):
+def similarity(vectA, vectB):   #Function that calculates the similarity between two vectors
     try:
         simi = scalar(vectA, vectB)/(norm(vectA)*norm(vectB))
     except:
         simi = 0
     return simi
 
-def most_relevant_doc(matrix_TD_IDF, question_TF_IDF,listNamePres):
-    
+def most_relevant_doc(matrix_TF_IDF, question_TF_IDF, files_name):
+    """
+    Function that returns the most similar document in relation to a question
+    """
 
-    return
+    IDF = score_IDF('./cleaned')
+    index = 0
+    similar_quantity = -1
+
+
+    for file in files_name:
+        index += 1
+        document_vector = []
+
+        with open(path_cleaned_file(file), 'r', encoding = 'utf-8') as f :
+            content = cleanText(f.read().lower())
+            TF = score_TF(content)
+            list_of_word_document = list(TF.keys())
+
+            for word in list(question_TF_IDF.keys()):
+                if word in list_of_word_document:
+                    document_vector.append(TF[word] * IDF[word])
+                else:
+                    document_vector.append(0)
+
+            if similar_quantity < similarity(list(question_TF_IDF.values()), document_vector):
+                similar_quantity = similarity(list(question_TF_IDF.values()), document_vector)
+                name_document = file
+
+    return name_document

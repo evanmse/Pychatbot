@@ -102,9 +102,13 @@ def matrix_TD_IDF(directory):       #Calculate the matrix TF-IDF
     return list_final
 
 def visual_matrix_TD_IDF(list_final):
+
+    for i in range(25):
+        print(end=" ")
+
     for file in list_of_files("./cleaned", "txt"):
         print(file, "|", end=" ")
-
+    print()
     for word in range(len(list_final)):  # Creation of the visual of the matrix
         for space in range(23 - len(list_final[word][0])):
             print(end=" ")
