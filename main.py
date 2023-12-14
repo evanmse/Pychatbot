@@ -4,14 +4,15 @@ from menu_function import *
 from partII_functions import *
 
 if __name__ == "__main__":
-        print("### Test TD_IDF Question ###")
-        question = "president manger nation manger nation jul"
-        print(question_TF_IDF(question))
-
+        
         for name in list_of_files("./speeches", "txt"):  #Backbone of the menu
                 lowerClean(name)
         for name in list_of_files("./cleaned", "txt"):
                 clearFile(name)
+        
+        question = "Pain baguette jeu joue tout vous v"
+        test_Similarity(question)
+
         displayStart()
         while True:
                 dir = menu()

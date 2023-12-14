@@ -1,7 +1,7 @@
 from base_function import *
 from tf_idf_function import *
 from menu_function import *
-
+from partII_functions import *
 
 # Main variables
 directory = "./speeches"
@@ -45,3 +45,32 @@ def test_clearFile():  # Test for clearFile :
         clearFile(name)
     print("Text is now clear")
     return
+
+def test_Similarity(question):
+    print("#### Test similarity ####")
+    x = question_TF_IDF(question)
+
+    list_value_question_TD_IDF = []
+    list_word_question = []
+
+    for item, val in x.items():
+        list_value_question_TD_IDF.append(val)
+        list_word_question.append(item)
+
+    matrix = []
+
+    for document in list_of_files("./cleaned", "txt"):
+        temp = []
+        for word in list_word_question:
+            try:
+                temp.append(score_TF_IDF(document,word))
+            except:
+                 temp.append(0)
+        matrix.append(temp)
+    print("This is the matrix of similarity of word of the question: ", matrix)
+
+    result = []
+    for i in range(len(list_of_files("./cleaned", "txt"))):
+            result.append(similarity(matrix[i],list_value_question_TD_IDF))
+            print(result[i:])
+    return result

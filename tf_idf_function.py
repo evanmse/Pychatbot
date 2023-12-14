@@ -53,7 +53,7 @@ def score_IDF(directory):   #Function that computes the IDF score of each word i
         number_document = len(list_of_files('./speeches', '.txt'))
         proportion_document_containing_word = mydict[key] / number_document
         inversed_proportion_document_containing_word = 1 / proportion_document_containing_word
-        dictionnary_IDF[key] = math.log10(inversed_proportion_document_containing_word)
+        dictionnary_IDF[key] = math.log(inversed_proportion_document_containing_word)
 
     return dictionnary_IDF
 
@@ -68,8 +68,9 @@ def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word i
         dictionnary_scoreTF_word = score_TF(content)
 
     return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
-    
-def matrix_TD_IDF(directory):  # Calculate the matrix TF-IDF
+
+
+def matrix_TD_IDF(directory):       #Calculate the matrix TF-IDF
     list_final = []
     rest = score_IDF('./cleaned')
     list_IDF_keys = sorted(list(rest.keys()))
@@ -98,7 +99,9 @@ def matrix_TD_IDF(directory):  # Calculate the matrix TF-IDF
                         list_final[line_list_final].append(0)
 
             state_first_loop = False
+    return list_final
 
+def visual_matrix_TD_IDF(list_final):
     for file in list_of_files("./cleaned", "txt"):
         print(file, "|", end=" ")
 
