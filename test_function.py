@@ -57,7 +57,7 @@ def test_Similarity(question):
         list_value_question_TD_IDF.append(val)
         list_word_question.append(item)
 
-    matrix = []
+    matrix = []  #List containing the values of the score TF-IDF of the words of the question
 
     for document in list_of_files("./cleaned", "txt"):
         temp = []

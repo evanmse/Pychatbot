@@ -29,40 +29,66 @@ def question_words_corpus(question):
 
     return list(set(words_corpus) & set(words_in_question))
 
-def question_TF_IDF(question): #TD_IDF Question
+def question_TF_IDF(question): #Function that returns the TF-IDF vector of the question
     TF =  score_TF(question)
     IDF = score_IDF("./cleaned")
     TF_IDF = {}
     for value1, item1 in TF.items():
-            for value2, item2 in IDF.items():
-                if value1 == value2:
-                    TF_IDF[value1] = TF[value2]*IDF[value1]
-                if value1 not in IDF:
-                    TF_IDF[value1] = 0
+        for value2, item2 in IDF.items():
+            if value1 == value2:
+                TF_IDF[value1] = TF[value2]*IDF[value1]
+            elif value1 not in IDF:
+                TF_IDF[value1] = 0
     return TF_IDF
 
-def scalar(vectA, vectB):
+def scalar(vectA, vectB):       #Function that calculates the scalar product of two vectors
     n = len(vectA)
     scal = 0
     for i in range(n):
         scal += (vectA[i]*vectB[i])
     return scal
 
-def norm(vectA):
+def norm(vectA:list):       #Function that calculates the norm of a vector
     n =len(vectA)
     norm = 0
     for i in range(n):
         norm += vectA[i]**2
     return sqrt(norm)
 
-def similarity(vectA, vectB):
+def similarity(vectA, vectB):   #Function that calculates the similarity between two vectors
     try:
         simi = scalar(vectA, vectB)/(norm(vectA)*norm(vectB))
     except:
         simi = 0
     return simi
 
-def most_relevant_doc(matrix_TD_IDF, question_TF_IDF,listNamePres):
-    
+def most_relevant_doc(matrix_TF_IDF, question_TF_IDF, files_name):
+    """
+    Function that returns the most similar document in relation to a question
+    """
 
-    return
+    IDF = score_IDF('./cleaned')
+    index = 0
+    similar_quantity = -1
+
+    visual_matrix_TD_IDF(matrix_TF_IDF)
+
+    for file in files_name:
+        index += 1
+        document_vector = []
+
+
+        for j in range(len(list(IDF.keys()))):
+            document_vector.append(matrix_TF_IDF[j][index])
+
+        print(document_vector)
+        print()
+
+        if similar_quantity < similarity(list(question_TF_IDF.values()), document_vector):
+            similar_quantity = similarity(list(question_TF_IDF.values()), document_vector)
+            name_document = file
+
+
+    return name_document
+
+print(most_relevant_doc(matrix_TD_IDF('./cleaned'), question_TF_IDF('"Peux-tu me dire comment une nation peut-elle prendre soin du climat ?'), list_of_files('./cleaned', 'txt')))
