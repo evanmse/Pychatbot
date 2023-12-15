@@ -77,6 +77,19 @@ def cleanText(text): # Sub-Function that clean a text
 
     return text
 
+def cleanText_with_dot(text):
+    dicReplace = {'é': 'e', 'à': 'a', 'è': 'e', 'ç': 'c', 'ê': 'e', 'ë': 'e', 'ù': 'u', 'â': 'a', '\n': ' ', 'ô': 'o',
+                  'î': 'i', 'û': 'u'}  # Dictionary of values to be changed
+    punctuation = [',', ';', '-', '!', '?', '\'', ':', '"', '`']  # List of punctuation to be change
+
+    for character in punctuation:  # Replace of ponctuation
+        text = text.replace(character, ' ')
+
+    for keys, value in dicReplace.items():  # Replace with dicReplace
+        text = text.replace(keys, value)
+
+    return text
+
 def path_cleaned_file(inputFile): # Function that give to a cleaned file its path
     path_cleaned_file = "./cleaned/{}".format(inputFile)
     return path_cleaned_file

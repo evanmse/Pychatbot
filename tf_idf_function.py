@@ -53,7 +53,7 @@ def score_IDF(directory):   #Function that computes the IDF score of each word i
         number_document = len(list_of_files('./speeches', '.txt'))
         proportion_document_containing_word = mydict[key] / number_document
         inversed_proportion_document_containing_word = 1 / proportion_document_containing_word
-        dictionnary_IDF[key] = math.log(inversed_proportion_document_containing_word)
+        dictionnary_IDF[key] = math.log10(inversed_proportion_document_containing_word)
 
     return dictionnary_IDF
 
