@@ -2,9 +2,10 @@ import time
 from func_function import *
 from test_function import *
 from tf_idf_function import *
+from partII_functions import *
 
 def launcher():
-    print("""
+    print(r"""
     #################################################################
     #    ______  __          _                                      #
     #   |  ____|/ _|        (_)                                     #
@@ -35,8 +36,12 @@ def section():
     #       us to develop by calling them (they are the functions in #
     #       the documentation).                                      #
     #                                                                #
-    #   3 - Exit                                                     #
-    ##################################################################""")
+    #   3 - Mode chatbot                                             #
+    #                                                                #
+    #   4 - Exit                                                     #
+    #                                                                #
+    ##################################################################
+          """)
     return
 
 def displayStart():
@@ -45,12 +50,12 @@ def displayStart():
     return
 
 def menu():
-    setAnswer = ("1", "2", "3")
+    setAnswer = ("1", "2", "3", "4", "documentation", "terminal", "chatbot", "exit")
     
-    dir = str(input("Enter a number between 1 and 3 included in order to go in a section : "))
+    dir = str(input("Enter a number between 1 and 4 included in order to go in a section : "))
 
     while dir not in setAnswer:
-        dir = str(input("Enter a number between 1 and 3 included in order to go in a section : "))
+        dir = str(input("Enter a number between 1 and 4 included in order to go in a section : "))
 
     return dir
 
@@ -69,15 +74,23 @@ def searchFunctionality(search):
         "score_TF_IDF" : "Function that returns the score TF-IDF of a certain word in a certain document",
         "matrix_TD_IDF" : "Functions that calculates the matrix TF-IDF",
     },
-
-    "Functionalities" : {
+    "Functionalities part 1" : {
         "min_word_TD_IDF" : "Function that gives the word(s) with TF-IDF = 0 in all the texts",
         "max_word_TD_IDF" : "Function that gives the word(s) with the highest score TF-IDF in all the texts",
         "word_most_repeated_Chirac": "Function that finds and prints the most repeated word(s) by Chirac",
         "talking_nation": "Function that determines which president(s) mentioned the word 'Nation' and identifies the president who repeated it the most times",
         "talking_climate": "Function that identifies the first president who talked about climate or ecology",
         "all_word_president": "Function that gives the words said by all the presidents, excluding unimportant words"
-    }}
+    },
+    "Functionalities part 2" : {
+        "question_tokenization" : "Tokenizes the input question, returning a list of words",
+        "question_words_corpus" : "Finds terms that intersect between the set of words in the corpus and the set of words in the question",
+        "question_TF_IDF" : "Returns the TF-IDF vector of the input question",
+        "most_relevant_doc" : "Identifies the most similar document in relation to a given question.",
+        "word_highest_TF_IDF_question" : "Returns the word with the highest TF-IDF score in the question",
+        "sentence_word_highest_TF_IDF":"Retrieves a sentence containing the word with the highest TF-IDF score from the most relevant document"
+        }
+    }
 
     if search == "all":
 
@@ -197,6 +210,30 @@ def terminal():
                         clearFile(file)
                     print("All the files in the folder cleaned do not have any punctuations anymore")
                     print()
+                elif dir == "question_tokenization": 
+                    print()
+                    question = input("Enter a question : ") 
+                    print("This is your tokenization : ", question_tokenization(question))
+                elif dir == "question_words_corpus":
+                    print()
+                    question = input("Enter a question : ")
+                    print("This is the terms that intersect : ",question_words_corpus(question))
+                elif dir == "question_TF_IDF":
+                    print()
+                    question = input("Enter a question : ")
+                    print("This is the TF IDF of the question :", question_TF_IDF(question))
+                elif dir == "most_relevant_doc":
+                    print()
+                    question = input("Enter a question : ")
+                    print("This is the most similar document with the question :", most_relevant_doc(question))
+                elif dir == "word_highest_TF_IDF_question":
+                    print()
+                    question = input("Enter a question : ")
+                    print("This is the word with the highest TF-IDF score in the question :", word_highest_TF_IDF_question(question))
+                elif dir == "sentence_word_highest_TF_IDF":
+                    print()
+                    question = input("Enter a question : ")
+                    print("This is sentence containing the word with the highest TF-IDF score :", sentence_word_highest_TF_IDF(question)) 
                 elif dir == "exit":
                         print("Exiting the Terminal. Goodbye!")
                         section()
@@ -205,3 +242,19 @@ def terminal():
                         print("!! Invalid choice !!")
     return
 
+def chatbot():
+    print("""
+    ##################################################################
+    #                           Chatbot                              #
+    #       Enter the question you want to ask ?                     #
+    #       To exit, enter : exit                                    #  
+    ################################################################## 
+""")
+    while True:
+        question = str(input("Chatbot : "))
+        if question == "exit":
+            section()
+            break
+        else:
+            print(sentence_word_highest_TF_IDF(question))
+    return

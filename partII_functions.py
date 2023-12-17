@@ -72,7 +72,7 @@ def similarity(vectA, vectB):  # Function that calculates the similarity between
     return simi
 
 
-def most_relevant_doc(matrix_TF_IDF, question_TF_IDF, files_name):
+def most_relevant_doc(matrix_TD_IDF, question_TF_IDF, files_name):
     """
     Function that returns the most similar document in relation to a question
     """
@@ -116,10 +116,6 @@ def word_highest_TF_IDF_question(question):
         return max_value_word
     else:
         return None
-
-
-
-
 
 def sentence_word_highest_TF_IDF(question):
 

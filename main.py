@@ -9,9 +9,6 @@ if __name__ == "__main__":
                 lowerClean(name)
         for name in list_of_files("./cleaned", "txt"):
                 clearFile(name)
-        
-        question = "Pain baguette jeu joue tout vous v"
-        test_Similarity(question)
 
         displayStart()
         while True:
@@ -21,7 +18,9 @@ if __name__ == "__main__":
                         documentation()
                 elif dir == "2" or dir == "terminal":
                         terminal()
-                elif dir == "3" or dir == "exit":
+                elif dir == "3" or dir == "chatbot":
+                        chatbot()
+                elif dir == "4" or dir == "exit":
                         print("Exiting the program. Goodbye!")
                         break
                 else:
