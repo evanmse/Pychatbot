@@ -61,6 +61,30 @@ This repository contains a Python script that provides a terminal-based interfac
 14. **cleanText**
     - Command: `cleanText`
     - Description: Function used to remove any punctuation characters of each file of the cleaned directory.
+    
+15. **question_tokenization**
+    - Command: `question_tokenization`
+    - Description: Tokenizes the input question, returning a list of words.
+
+16. **question_words_corpus**
+    - Command: `question_words_corpus`
+    - Description: Finds terms that intersect between the set of words in the corpus and the set of words in the question.
+
+17. **question_TF_IDF**
+    - Command: `question_TF_IDF`
+    - Description: Returns the TF-IDF vector of the input question
+
+18. **most_relevant_doc**
+    - Command: `most_relevant_doc`
+    - Description: Identifies the most similar document in relation to a given question.
+
+19. **word_highest_TF_IDF_question**
+    - Command: `word_highest_TF_IDF_question`
+    - Description: Returns the word with the highest TF-IDF score in the question.
+
+20. **sentence_word_highest_TF_IDF**
+    - Command: `word_highest_TF_IDF_question`
+    - Description: Retrieves a sentence containing the word with the highest TF-IDF score from the most relevant document.
 
 ### Additional Functions:
 

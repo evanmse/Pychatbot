@@ -225,7 +225,8 @@ def terminal():
                 elif dir == "most_relevant_doc":
                     print()
                     question = input("Enter a question : ")
-                    print("This is the most similar document with the question :", most_relevant_doc(question))
+                    print("This is the most similar document with the question :", most_relevant_doc(matrix_TD_IDF('./cleaned'),
+                                              question_TF_IDF(question), list_of_files('./cleaned', 'txt')))
                 elif dir == "word_highest_TF_IDF_question":
                     print()
                     question = input("Enter a question : ")
