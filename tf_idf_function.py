@@ -14,31 +14,49 @@ from base_function import *
 
 
 
-def score_TF(strings_chain):  # Function that associates to each word how many times it appeared in a string chain
+def score_TF(strings_chain):
+
+    """
+    Function that associates to each word how many times it appeared in a string chain
+
+    :param strings_chain: A string
+    :return: A dictionary that associates to each word how many times it appeared in a string chain
+
+    """
+
     content = strings_chain.lower()
     content = cleanText(content)
     dictionary = {}
     mylist = content.split(" ")
 
-    for i in range(mylist.count("")):  # Remove all the "" in the list
+    for i in range(mylist.count("")):
         mylist.remove("")
 
     list_unique_word = list(set(mylist))
 
     for word in list_unique_word:
-        dictionary[word] = mylist.count(word)
+        dictionary[word] = mylist.count(word)       #Creation of the dictionary (keys = words, values = frequency)
 
     return dictionary
 
 
-def score_IDF(directory):   #Function that computes the IDF score of each word in the entire corpus
+def score_IDF(directory):
+
+    """
+
+    Function that computes the IDF score of each word in the entire corpus
+
+    :param directory:   The folder containing the corpus
+    :return: A dictionary that associates to each word of the corpus its IDF score
+
+    """
     files_name = list_of_files(directory, 'txt')
     mylist = []
     mydict = {}
     dictionnary_IDF = {}
 
-    for file in files_name:  # Go through each file in the directory
-        full_path = path_speeches_file(file)  # Put in a variable the path of the file
+    for file in files_name:
+        full_path = path_speeches_file(file)
 
         with open(full_path, 'r', encoding='utf-8') as f:
             content = cleanText(f.read())
@@ -69,7 +87,17 @@ def score_IDF(directory):   #Function that computes the IDF score of each word i
     return dictionnary_IDF
 
 
-def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word in a certain document
+def score_TF_IDF(document, word):
+
+    """
+
+    Function that returns the score TF-IDF of a certain word in a certain document
+
+    :param document: the name of a document
+    :param word: a word
+    :return: the TF-IDF score of the word in the document
+    """
+
     full_path = os.path.join('./speeches', document)
     word = cleanText(word.lower())
     dictionnary_scoreIDF_word = score_IDF('./speeches') #Dictionary that contains the score_IDF of each word
@@ -81,7 +109,16 @@ def score_TF_IDF(document, word):  # Return the score TF-IDF of a certain word i
     return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
 
 
-def matrix_TD_IDF(directory):       #Calculate the matrix TF-IDF
+def matrix_TD_IDF(directory):
+
+    """
+
+    Function that calculates the matrix TF-IDF
+
+    :param directory: The folder containing the corpus
+    :return: The TF-IDF matrix
+
+    """
     list_final = []
     rest = score_IDF('./cleaned')
     list_IDF_keys = sorted(list(rest.keys()))
@@ -93,17 +130,23 @@ def matrix_TD_IDF(directory):       #Calculate the matrix TF-IDF
             content = cleanText(f.read())
             dictionnary_scoreTF_word = score_TF(content)
 
-            for keys in list_IDF_keys:
-                line_list_final += 1
-                if state_first_loop:
+            for keys in list_IDF_keys:      #For each file, we go through each word of the corpus
+
+                line_list_final += 1        #The variable here is used as an index
+
+                if state_first_loop:        #Only for the first document
                     mylist = [keys]
+
                     if keys in set(dictionnary_scoreTF_word.keys()):
                         mylist.append(dictionnary_scoreTF_word[keys] * rest[keys])
+
                     else:
                         mylist.append(0)
 
                     list_final.append(mylist)
+
                 else:
+
                     if keys in set(dictionnary_scoreTF_word.keys()):
                         list_final[line_list_final].append(dictionnary_scoreTF_word[keys] * rest[keys])
                     else:
@@ -113,6 +156,14 @@ def matrix_TD_IDF(directory):       #Calculate the matrix TF-IDF
     return list_final
 
 def visual_matrix_TD_IDF(list_final):
+    """
+
+    Function that displays the TF-IDF matrix
+
+    :param list_final: The matrix TF-IDF
+    :return: It returns nothing. It only displays properly the matrix
+
+    """
 
     for i in range(25):
         print(end=" ")

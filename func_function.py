@@ -13,6 +13,12 @@ from tf_idf_function import score_TF, score_IDF
 from base_function import path_speeches_file, cleanText, listNamePres, extractNameFile, list_of_files
 
 def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
+
+    """
+
+    :return: It returns the highest TF-IDF score
+
+    """
     dictionnary_scoreIDF_word = score_IDF('./speeches')
     maxi = 0
     files_name = list_of_files('./speeches', 'txt')
@@ -32,6 +38,11 @@ def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
 
 
 def min_word_TD_IDF():  # Functionality that gives the word(s) with TF-IDF = 0 in all text
+    """
+
+    :return: It returns a list of all the unimportant words
+
+    """
     mylist = []
     dictionnary_scoreIDF_word = score_IDF('./speeches')
 
@@ -54,6 +65,12 @@ def min_word_TD_IDF():  # Functionality that gives the word(s) with TF-IDF = 0 i
 
 def max_word_TD_IDF():  # Functionality that gives the word(s) with max TD-IDF in all text
 
+    """
+
+    :return: It returns a list of all the word(s) with the highest TF-IDF score in all the texts
+
+    """
+
     dictionnary_scoreIDF_word = score_IDF('./speeches')
     maxi = max_score_TF_IDF()
     files_name = list_of_files('./speeches', 'txt')
@@ -74,6 +91,12 @@ def max_word_TD_IDF():  # Functionality that gives the word(s) with max TD-IDF i
 
 
 def word_most_repeated_Chirac():  # Functionality that gives the most repeated word by Chirac
+
+    """
+
+    :return: It returns the word(s) most repeated by Chirac, excluding unimportant words
+
+    """
 
     content = ''
     files_name = list_of_files('./speeches', 'txt')
@@ -104,6 +127,12 @@ def word_most_repeated_Chirac():  # Functionality that gives the most repeated w
 
 
 def talking_climate():  # Functionality that gives the first president who talked about climate
+
+    """
+
+    :return: It returns the name of the president who first talked about climate
+
+    """
     files_name = list_of_files('./speeches', 'txt')
 
     index_min = float('inf')  # index_min equals to infinity
@@ -131,6 +160,14 @@ def talking_climate():  # Functionality that gives the first president who talke
 
 def talking_nation():  # Functionality that gives which president(s) said the word "Nation" and the one who repeated it the most time
 
+    """
+
+    :return: There is no return since we chose to print the result instead of returning it because the instructions
+    ask us to indicate the name(s) of the president(s) who spoke of the "Nation" and the one who repeated it the most
+    times.
+
+    """
+
     files_name = list_of_files('./speeches', 'txt')
     maxi = 0
     mylist = []
@@ -155,6 +192,12 @@ def talking_nation():  # Functionality that gives which president(s) said the wo
 
 
 def all_word_president():  # Functionality that gives the words all presidents have said except the unimportant words
+
+    """
+
+    :return: It returns a list of the words said by all presidents except the unimportant words
+
+    """
 
     list_name_pres = listNamePres("./speeches", "txt")
     files_name = list_of_files('./speeches', 'txt')

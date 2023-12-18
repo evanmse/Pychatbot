@@ -16,6 +16,9 @@ from math import *
 def question_tokenization(question):
     """
     Function that takes the text of the question and returns the list of words that make up the question.
+
+    :param question: Question asked by the user
+    :return: A list of each word of the question
     """
 
     content = question.lower()
@@ -34,6 +37,9 @@ def question_words_corpus(question):
     Function that looks for terms that form the intersection between the set of words in the corpus and the
     set of words in the question.
 
+    :param question: Question asked by the user
+    :return: a list of terms that form the intersection between the set of words in the corpus and the
+    set of words in the question.
     """
 
     words_corpus = list(score_IDF('./speeches').keys())
@@ -43,7 +49,15 @@ def question_words_corpus(question):
     return list(set(words_corpus) & set(words_in_question))
 
 
-def question_TF_IDF(question):  # Function that returns the TF-IDF vector of the question
+def question_TF_IDF(question):
+
+    """
+    Function that returns the TF-IDF vector of the question
+
+    :param question: Question asked by the user
+    :return: the TF-IDF vector of the question
+
+    """
     TF = score_TF(question)
     list_word_question = list(TF.keys())
     IDF = score_IDF("./cleaned")
@@ -59,7 +73,17 @@ def question_TF_IDF(question):  # Function that returns the TF-IDF vector of the
     return TF_IDF
 
 
-def scalar(vectA, vectB):  # Function that calculates the scalar product of two vectors
+def scalar(vectA, vectB):
+
+    """
+    Function that calculates the scalar product of two vectors
+
+    :param vectA: First vector
+    :param vectB: Second vector
+
+    :return: the scalar product of these two vectors
+
+    """
     n = len(vectA)
     scal = 0
     for i in range(n):
@@ -67,7 +91,15 @@ def scalar(vectA, vectB):  # Function that calculates the scalar product of two 
     return scal
 
 
-def norm(vectA: list):  # Function that calculates the norm of a vector
+def norm(vectA: list):
+
+    """
+    Function that calculates the norm of a vector
+
+    :param vectA: A vector
+    :return: Its norm
+
+    """
     n = len(vectA)
     norm = 0
     for i in range(n):
@@ -75,18 +107,37 @@ def norm(vectA: list):  # Function that calculates the norm of a vector
     return sqrt(norm)
 
 
-def similarity(vectA, vectB):  # Function that calculates the similarity between two vectors
+def similarity(vectA, vectB):
+
+    """
+
+    Function that calculates the similarity between two vectors
+
+    :param vectA: First vector
+    :param vectB: Second Vector
+    :return: The similarity score
+
+    """
     try:
         simi = scalar(vectA, vectB) / (norm(vectA) * norm(vectB))
     except:
-        simi = 0
+        simi = 0  #In the case where there is a division by zero
     return simi
 
 
 def most_relevant_doc(matrix_TD_IDF, question_TF_IDF, files_name):
     """
+
     Function that returns the most similar document in relation to a question
+
+    :param matrix_TD_IDF: The matrix TD_IDF of the corpus
+    :param question_TF_IDF: The TF-IDF vector of the question
+    :param files_name: the list of the files' name
+    :return: the most similar document in relation to a question
+
+
     """
+
 
     IDF = score_IDF('./cleaned')
     index = 0
@@ -119,6 +170,10 @@ def most_relevant_doc(matrix_TD_IDF, question_TF_IDF, files_name):
 def word_highest_TF_IDF_question(question):
     """
     Function that returns the word with the highest score TF-IDF in the question
+
+    :param question: Question aksed by the user
+    :return: If the TF-IDF vector of the question is empty, then it returns None. Otherwise, it returns
+    the word with the highest score TF-IDF in the question
     """
 
     dict_TF_IDF_question = question_TF_IDF(question)
@@ -130,9 +185,14 @@ def word_highest_TF_IDF_question(question):
 
 def sentence_word_highest_TF_IDF(question):
     """
-    Function that returns the sentence in which there is the word with the highest TF-IDF in the question in the most relevant document
+    Function that locates the first occurrence of the word with the highest score in the most relevant document
+    and returns the sentence containing it as the answer
+
+    :param question: Question asked by the user
+    :return: the sentence in which there is the word with the highest TF-IDF in the question in the most relevant document
 
     """
+
 
 
     word_highest_TF_IDF = word_highest_TF_IDF_question(question)
@@ -160,18 +220,18 @@ def sentence_word_highest_TF_IDF(question):
             phrases = cleanText_with_dot(content).lower().split('.')
 
             for phrase in phrases:
-                index += 1
+                index += 1      #Locate the index of the sentence
                 if word_highest_TF_IDF in phrase.split():
                     in_the_text = True
                     break
 
-            phrase_containing_word = content.split(".")[index]
+            phrase_containing_word = content.split(".")[index]  #Get the sentence
 
             phrase_containing_word = phrase_containing_word.replace('-', '')
             phrase_containing_word = phrase_containing_word.replace('\n', '')
 
             if in_the_text:
-                if question.split(" ")[0] in list(question_formulation.keys()):
+                if question.split(" ")[0] in list(question_formulation.keys()):     #If the question begins with one of the keys of the dictionary question_formulation
                     return question_formulation[question.split(" ")[0]] + phrase_containing_word.lstrip("- \t\n") + "."
                 else:
                     return phrase_containing_word.lstrip("- \t\n") + "."

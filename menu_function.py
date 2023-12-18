@@ -15,6 +15,12 @@ from tf_idf_function import *
 from partII_functions import *
 
 def launcher():
+    """
+    Displays EFREI PYCHATBOT
+
+    :return: No return since this function is used only to display the thing below.
+
+    """
     print(r"""
     #################################################################
     #    ______  __          _                                      #
@@ -36,6 +42,14 @@ def launcher():
     return
 
 def section():
+
+    """
+    Displays the different sections
+
+
+    :return: No return since this function is used only to display the thing below.
+
+    """
     print("""
     ##################################################################
     #                           Sections                             #
@@ -55,13 +69,28 @@ def section():
     return
 
 def displayStart():
+
+    """
+    Displays the different sections and EFREI PYCHATBOT
+
+    :return: No return since this function is only used to display the two prints above
+
+    """
+
     launcher()
     section()
     return
 
 def menu():
+
+    """
+    Function that asks the user in which section does he want to go to.
+
+    :return: The choice of the user
+
+    """
     setAnswer = ("1", "2", "3", "4", "documentation", "terminal", "chatbot", "exit")
-    
+
     dir = str(input("Enter a number between 1 and 4 included in order to go in a section : "))
 
     while dir not in setAnswer:
@@ -70,6 +99,16 @@ def menu():
     return dir
 
 def searchFunctionality(search):
+
+    """
+
+    Functions that prints all the documentation
+
+    :param search: Parameter used only if the user wants to go in the documentation. In this case, we print all the
+    elements of the variable dic.
+    :return: Nothing since this function is only used for displaying
+
+    """
     dic = {
     "Basic functions" : {
         "extractNameFile" : "Function that extracts the name of the president in the name of a certain file",
@@ -115,12 +154,25 @@ def searchFunctionality(search):
         return
 
 def documentation():
+    """
+    Function called in order to display the documentation
+
+    :return: Nothing since it is only used for displaying.
+
+    """
     searchFunctionality("all")
     time.sleep(1)
     section()
     return
 
 def terminal():
+
+    """
+    Function that calls the functions desired by the user
+
+    :return: Nothing since it only calls the different functions
+
+    """
 
     state = False
     while True:
@@ -220,9 +272,9 @@ def terminal():
                         clearFile(file)
                     print("All the files in the folder cleaned do not have any punctuations anymore")
                     print()
-                elif dir == "question_tokenization": 
+                elif dir == "question_tokenization":
                     print()
-                    question = input("Enter a question : ") 
+                    question = input("Enter a question : ")
                     print("This is your tokenization : ", question_tokenization(question))
                     print()
                 elif dir == "question_words_corpus":
@@ -267,6 +319,13 @@ def terminal():
     return
 
 def chatbot():
+
+    """
+    Function that runs the Chatbot Mode.
+
+    :return: Nothing since the function only displays
+
+    """
     print("""
     ##################################################################
     #                           Chatbot                              #
