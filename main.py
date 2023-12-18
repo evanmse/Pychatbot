@@ -1,3 +1,15 @@
+"""
+
+pychatbot-MASSE-LOESCH_Int2, Evan MASSE, Thomas LOESCH.
+
+This file allows the user to navigate between the different sections of the menu (Documentation, the terminal,
+the chatbot and the exit).
+
+"""
+
+
+
+
 from base_function import *
 from tf_idf_function import *
 from menu_function import *

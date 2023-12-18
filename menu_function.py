@@ -1,3 +1,13 @@
+"""
+
+pychatbot-MASSE-LOESCH_Int2, Evan MASSE, Thomas LOESCH.
+
+This file allows the user to test the functions asked in the instructions in a menu.
+
+"""
+
+
+
 import time
 from func_function import *
 from test_function import *
@@ -5,6 +15,12 @@ from tf_idf_function import *
 from partII_functions import *
 
 def launcher():
+    """
+    Displays EFREI PYCHATBOT
+
+    :return: No return since this function is used only to display the thing below.
+
+    """
     print(r"""
     #################################################################
     #    ______  __          _                                      #
@@ -26,9 +42,17 @@ def launcher():
     return
 
 def section():
+
+    """
+    Displays the different sections
+
+
+    :return: No return since this function is used only to display the thing below.
+
+    """
     print("""
     ##################################################################
-    #                           Sections                             #
+    #                           Sections                             #      
     #   1 - Documentation of all the functions (Recommended to see   #
     #       this section first before testing the functions)         #    
     #                                                                #
@@ -45,14 +69,29 @@ def section():
     return
 
 def displayStart():
-    launcher()
+
+    """
+    Displays the different sections and EFREI PYCHATBOT
+
+    :return: No return since this function is only used to display the two prints above
+
+    """
+
+    launcher()          #Print the 2 messages above
     section()
     return
 
 def menu():
+
+    """
+    Function that asks the user in which section does he want to go to.
+
+    :return: The choice of the user
+
+    """
     setAnswer = ("1", "2", "3", "4", "documentation", "terminal", "chatbot", "exit")
-    
-    dir = str(input("Enter a number between 1 and 4 included in order to go in a section : "))
+
+    dir = str(input("Enter a number between 1 and 4 included in order to go in a section : "))      #Ask the user to enter a number between 1 and 4
 
     while dir not in setAnswer:
         dir = str(input("Enter a number between 1 and 4 included in order to go in a section : "))
@@ -60,6 +99,16 @@ def menu():
     return dir
 
 def searchFunctionality(search):
+
+    """
+
+    Functions that prints all the documentation
+
+    :param search: Parameter used only if the user wants to go in the documentation. In this case, we print all the
+    elements of the variable dic.
+    :return: Nothing since this function is only used for displaying
+
+    """
     dic = {
     "Basic functions" : {
         "extractNameFile" : "Function that extracts the name of the president in the name of a certain file",
@@ -93,7 +142,7 @@ def searchFunctionality(search):
     }
 
     if search == "all":
-
+                                #Print the documentation
         for key in dic:
             print()
             print(key, ":")
@@ -105,16 +154,30 @@ def searchFunctionality(search):
         return
 
 def documentation():
+    """
+    Function called in order to display the documentation
+
+    :return: Nothing since it is only used for displaying.
+
+    """
     searchFunctionality("all")
-    time.sleep(1)
+    time.sleep(1)           #Print the documentation, wait 1 sec and then go back to the menu where we can see the different sections
+
     section()
     return
 
 def terminal():
 
+    """
+    Function that calls the functions desired by the user
+
+    :return: Nothing since it only calls the different functions
+
+    """
+
     state = False
     while True:
-                if state is False:
+                if state is False:              #Message that appears only once
                     print()
                     print("(If you want to call the function \"talking_nation()\" for instance, type \"talking_nation\")")
                     print()
@@ -123,7 +186,7 @@ def terminal():
 
                 dir = input("# Terminal (you can exit the terminal by typing \'exit\') : ")
 
-                if dir == "min_word_TD_IDF":
+                if dir == "min_word_TD_IDF":                #Call of a function depending on the user's demand
                     print()
                     print(min_word_TD_IDF())
                     print()
@@ -210,32 +273,45 @@ def terminal():
                         clearFile(file)
                     print("All the files in the folder cleaned do not have any punctuations anymore")
                     print()
-                elif dir == "question_tokenization": 
+                elif dir == "question_tokenization":
                     print()
-                    question = input("Enter a question : ") 
+                    question = input("Enter a question : ")
                     print("This is your tokenization : ", question_tokenization(question))
+                    print()
                 elif dir == "question_words_corpus":
                     print()
                     question = input("Enter a question : ")
                     print("This is the terms that intersect : ",question_words_corpus(question))
+                    print()
                 elif dir == "question_TF_IDF":
                     print()
                     question = input("Enter a question : ")
-                    print("This is the TF IDF of the question :", question_TF_IDF(question))
+                    print("This is the TF IDF of the question :")
+                    print(question_TF_IDF(question))
+                    print()
                 elif dir == "most_relevant_doc":
                     print()
                     question = input("Enter a question : ")
                     print("This is the most similar document with the question :", most_relevant_doc(matrix_TD_IDF('./cleaned'),
                                               question_TF_IDF(question), list_of_files('./cleaned', 'txt')))
+                    print()
                 elif dir == "word_highest_TF_IDF_question":
                     print()
                     question = input("Enter a question : ")
-                    print("This is the word with the highest TF-IDF score in the question :", word_highest_TF_IDF_question(question))
+
+                    if word_highest_TF_IDF_question(question) is None:
+                        print("There are no words in the question that are in the corpus.")
+                    else:
+                        print("This is the word with the highest TF-IDF score in the question :", word_highest_TF_IDF_question(question))
+
+                    print()
                 elif dir == "sentence_word_highest_TF_IDF":
                     print()
                     question = input("Enter a question : ")
-                    print("This is sentence containing the word with the highest TF-IDF score :", sentence_word_highest_TF_IDF(question)) 
+                    print(sentence_word_highest_TF_IDF(question))
+                    print()
                 elif dir == "exit":
+                        print()
                         print("Exiting the Terminal. Goodbye!")
                         section()
                         break
@@ -244,6 +320,13 @@ def terminal():
     return
 
 def chatbot():
+
+    """
+    Function that runs the Chatbot Mode.
+
+    :return: Nothing since the function only displays
+
+    """
     print("""
     ##################################################################
     #                           Chatbot                              #
@@ -252,10 +335,10 @@ def chatbot():
     ################################################################## 
 """)
     while True:
-        question = str(input("Chatbot : "))
+        question = str(input("Question : "))            #Input from the user
         if question == "exit":
             section()
             break
         else:
-            print(sentence_word_highest_TF_IDF(question))
+            print("Chatbot :", sentence_word_highest_TF_IDF(question))      #Answer of the chatbot
     return
