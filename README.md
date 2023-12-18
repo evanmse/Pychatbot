@@ -83,7 +83,7 @@ This repository contains a Python script that provides a terminal-based interfac
     - Description: Returns the word with the highest TF-IDF score in the question.
 
 20. **sentence_word_highest_TF_IDF**
-    - Command: `word_highest_TF_IDF_question`
+    - Command: `sentence_word_highest_TF_IDF`
     - Description: Retrieves a sentence containing the word with the highest TF-IDF score from the most relevant document.
 
 ### Additional Functions:
