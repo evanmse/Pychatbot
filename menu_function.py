@@ -1,3 +1,13 @@
+"""
+
+pychatbot-MASSE-LOESCH_Int2, Evan MASSE, Thomas LOESCH.
+
+This file allows the user to test the functions asked in the instructions in a menu.
+
+"""
+
+
+
 import time
 from func_function import *
 from test_function import *

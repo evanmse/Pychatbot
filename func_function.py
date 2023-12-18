@@ -1,3 +1,14 @@
+"""
+
+pychatbot-MASSE-LOESCH_Int2, Evan MASSE, Thomas LOESCH.
+
+This file contains all the features asked in the instructions.
+
+"""
+
+
+
+
 from tf_idf_function import score_TF, score_IDF
 from base_function import path_speeches_file, cleanText, listNamePres, extractNameFile, list_of_files
 

@@ -1,3 +1,13 @@
+"""
+
+pychatbot-MASSE-LOESCH_Int2, Evan MASSE, Thomas LOESCH.
+
+This file is the file where we tested some of our functions.
+
+"""
+
+
+
 from base_function import *
 from tf_idf_function import *
 from menu_function import *

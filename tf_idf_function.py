@@ -1,3 +1,14 @@
+"""
+
+pychatbot-MASSE-LOESCH_Int2, Evan MASSE, Thomas LOESCH.
+
+This file contains all the functions related to the TF-IDF score.
+
+"""
+
+
+
+
 import math
 from base_function import *
 

@@ -1,3 +1,14 @@
+"""
+
+pychatbot-MASSE-LOESCH_Int2, Evan MASSE, Thomas LOESCH.
+
+This file contains the basic functions asked in the instructions. The functions allow to clean a file, extract the
+name of a president, have the name of the files and so on.
+
+"""
+
+
+
 import os
 
 def list_of_files(directory, extension):  # Function that gives the list of files in a directory, Example : /speeches
