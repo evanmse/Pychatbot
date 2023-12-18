@@ -30,7 +30,7 @@ def max_score_TF_IDF():  # Function that calculates the highest TF-IDF score
             content = f.read()
             dictionnary_scoreTF_word = score_TF(content)
 
-        for i in dictionnary_scoreTF_word:  # Calculate the maximum TF-IDF score
+        for i in dictionnary_scoreTF_word:              # Calculate the maximum TF-IDF score
             if (dictionnary_scoreTF_word[i] * dictionnary_scoreIDF_word[i]) > maxi:
                 maxi = dictionnary_scoreTF_word[i] * dictionnary_scoreIDF_word[i]
 
@@ -57,7 +57,7 @@ def min_word_TD_IDF():  # Functionality that gives the word(s) with TF-IDF = 0 i
             dictionnary_scoreTF_word = score_TF(content)
 
         for i in list_of_word:
-            if (dictionnary_scoreTF_word[i] * dictionnary_scoreIDF_word[i]) == 0:  # If score TF-IDF is 0
+            if (dictionnary_scoreTF_word[i] * dictionnary_scoreIDF_word[i]) == 0:  # If score TF-IDF is 0, we add it to the list
                 mylist.append(i)
 
     return list(set(mylist))
@@ -83,7 +83,7 @@ def max_word_TD_IDF():  # Functionality that gives the word(s) with max TD-IDF i
             content = f.read()
             dictionnary_scoreTF_word = score_TF(content)
 
-        for i in dictionnary_scoreTF_word:  # Calculate the maximum TF-IDF score
+        for i in dictionnary_scoreTF_word:  #Add to the list the words with the highest score
             if (dictionnary_scoreTF_word[i] * dictionnary_scoreIDF_word[i]) == maxi:
                 mylist.append(i)
 
@@ -113,13 +113,13 @@ def word_most_repeated_Chirac():  # Functionality that gives the most repeated w
 
     unimportant_words = min_word_TD_IDF()
 
-    for word in list(dictionnary_scoreTF_word.keys()):
+    for word in list(dictionnary_scoreTF_word.keys()):      #Suppression of the words that are unimportant
         if word in unimportant_words:
             del dictionnary_scoreTF_word[word]
 
     maxi = max(list(dictionnary_scoreTF_word.values()))
 
-    for key in list(dictionnary_scoreTF_word.keys()):
+    for key in list(dictionnary_scoreTF_word.keys()):           #Words with the highest TF score are added to the list
         if dictionnary_scoreTF_word[key] == maxi:
             mylist.append(key)
 
@@ -150,7 +150,7 @@ def talking_climate():  # Functionality that gives the first president who talke
 
             for j in range(
                     len(mylist)):  # If the index is inferior to the previous files, index is update and the president too
-                if ("climat" in mylist[j] or "écologie" in mylist[j]) and (j < index_min):
+                if ("climat" in mylist[j] or "écologie" in mylist[j]) and (j < index_min):  #Verify if climat or écologie are in the list
                     index_min = j
                     president_climate_ecology = extractNameFile(file)
                     break
@@ -182,7 +182,7 @@ def talking_nation():  # Functionality that gives which president(s) said the wo
 
         if "nation" in list_words_content:  # Verify if nation is a word in the file
             mylist.append(extractNameFile(file))  # If yes, the name of the president is added to mylist
-            if dictionary_scoreTF_word["nation"] > maxi:  # Calculate how many times a certain president said the word
+            if dictionary_scoreTF_word["nation"] > maxi:  # Calculate how many times a certain president said the word and then compare it
                 maxi = dictionary_scoreTF_word["nation"]
                 president_talked_most_nation = extractNameFile(file)
 

@@ -6,16 +6,11 @@ This file contains all the functions related to the TF-IDF score.
 
 """
 
-
-
-
 import math
 from base_function import *
 
 
-
 def score_TF(strings_chain):
-
     """
     Function that associates to each word how many times it appeared in a string chain
 
@@ -35,13 +30,12 @@ def score_TF(strings_chain):
     list_unique_word = list(set(mylist))
 
     for word in list_unique_word:
-        dictionary[word] = mylist.count(word)       #Creation of the dictionary (keys = words, values = frequency)
+        dictionary[word] = mylist.count(word)  # Creation of the dictionary (keys = words, values = frequency)
 
     return dictionary
 
 
 def score_IDF(directory):
-
     """
 
     Function that computes the IDF score of each word in the entire corpus
@@ -88,7 +82,6 @@ def score_IDF(directory):
 
 
 def score_TF_IDF(document, word):
-
     """
 
     Function that returns the score TF-IDF of a certain word in a certain document
@@ -100,17 +93,17 @@ def score_TF_IDF(document, word):
 
     full_path = os.path.join('./speeches', document)
     word = cleanText(word.lower())
-    dictionnary_scoreIDF_word = score_IDF('./speeches') #Dictionary that contains the score_IDF of each word
+    dictionnary_scoreIDF_word = score_IDF('./speeches')  # Dictionary that contains the score_IDF of each word
 
     with open(full_path, 'r', encoding='utf-8') as f:
         content = cleanText(f.read().lower())
         dictionnary_scoreTF_word = score_TF(content)
 
-    return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[word]
+    return dictionnary_scoreTF_word[word] * dictionnary_scoreIDF_word[
+        word]  # Calculates the score TF-IDF of a certain word in a certain document
 
 
 def matrix_TD_IDF(directory):
-
     """
 
     Function that calculates the matrix TF-IDF
@@ -130,11 +123,11 @@ def matrix_TD_IDF(directory):
             content = cleanText(f.read())
             dictionnary_scoreTF_word = score_TF(content)
 
-            for keys in list_IDF_keys:      #For each file, we go through each word of the corpus
+            for keys in list_IDF_keys:  # For each file, we go through each word of the corpus
 
-                line_list_final += 1        #The variable here is used as an index
+                line_list_final += 1  # The variable here is used as an index
 
-                if state_first_loop:        #Only for the first document
+                if state_first_loop:  # Only for the first document
                     mylist = [keys]
 
                     if keys in set(dictionnary_scoreTF_word.keys()):
@@ -154,6 +147,7 @@ def matrix_TD_IDF(directory):
 
             state_first_loop = False
     return list_final
+
 
 def visual_matrix_TD_IDF(list_final):
     """

@@ -52,7 +52,7 @@ def section():
     """
     print("""
     ##################################################################
-    #                           Sections                             #
+    #                           Sections                             #      
     #   1 - Documentation of all the functions (Recommended to see   #
     #       this section first before testing the functions)         #    
     #                                                                #
@@ -77,7 +77,7 @@ def displayStart():
 
     """
 
-    launcher()
+    launcher()          #Print the 2 messages above
     section()
     return
 
@@ -91,7 +91,7 @@ def menu():
     """
     setAnswer = ("1", "2", "3", "4", "documentation", "terminal", "chatbot", "exit")
 
-    dir = str(input("Enter a number between 1 and 4 included in order to go in a section : "))
+    dir = str(input("Enter a number between 1 and 4 included in order to go in a section : "))      #Ask the user to enter a number between 1 and 4
 
     while dir not in setAnswer:
         dir = str(input("Enter a number between 1 and 4 included in order to go in a section : "))
@@ -142,7 +142,7 @@ def searchFunctionality(search):
     }
 
     if search == "all":
-
+                                #Print the documentation
         for key in dic:
             print()
             print(key, ":")
@@ -161,7 +161,8 @@ def documentation():
 
     """
     searchFunctionality("all")
-    time.sleep(1)
+    time.sleep(1)           #Print the documentation, wait 1 sec and then go back to the menu where we can see the different sections
+
     section()
     return
 
@@ -176,7 +177,7 @@ def terminal():
 
     state = False
     while True:
-                if state is False:
+                if state is False:              #Message that appears only once
                     print()
                     print("(If you want to call the function \"talking_nation()\" for instance, type \"talking_nation\")")
                     print()
@@ -185,7 +186,7 @@ def terminal():
 
                 dir = input("# Terminal (you can exit the terminal by typing \'exit\') : ")
 
-                if dir == "min_word_TD_IDF":
+                if dir == "min_word_TD_IDF":                #Call of a function depending on the user's demand
                     print()
                     print(min_word_TD_IDF())
                     print()
@@ -334,10 +335,10 @@ def chatbot():
     ################################################################## 
 """)
     while True:
-        question = str(input("Question : "))
+        question = str(input("Question : "))            #Input from the user
         if question == "exit":
             section()
             break
         else:
-            print("Chatbot :", sentence_word_highest_TF_IDF(question))
+            print("Chatbot :", sentence_word_highest_TF_IDF(question))      #Answer of the chatbot
     return

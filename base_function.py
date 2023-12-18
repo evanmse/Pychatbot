@@ -23,7 +23,7 @@ def list_of_files(directory, extension):  # Function that gives the list of file
 
     files_names = []
 
-    for filename in os.listdir(directory):
+    for filename in os.listdir(directory):                  #Creation of the list of files
         if filename.endswith(extension):
             files_names.append(filename)
 
@@ -39,8 +39,8 @@ def extractNameFile(nameFile):  # Function that extracts the name of the preside
     """
     namePres = "" # Variable for the result
 
-    nameSplit = nameFile.split("_")[1] # Split the name of the file and keep group 1 [Nomination_][[nom d’un president][numéro].txt]
-    nameSplit = nameSplit.split(".")[0] # Split the name of group 1 and keep before the dot group [[nom d’un president][numéro]][.txt]
+    nameSplit = nameFile.split("_")[1]  # Split the name of the file and keep group 1 [Nomination_][[nom d’un president][numéro].txt]
+    nameSplit = nameSplit.split(".")[0]  # Split the name of group 1 and keep before the dot group [[nom d’un president][numéro]][.txt]
 
     for char in nameSplit: # Function that test in nameSplit if he has a number
         if char.isspace():
@@ -63,7 +63,7 @@ def listNamePres(inputFile, extension):  #Function that displays the list of the
     list_name_pres = []
 
     for name_file in list_of_files(inputFile, extension):
-        list_name_pres.append(extractNameFile(name_file))
+        list_name_pres.append(extractNameFile(name_file))      #Add to the list the name of the president in the name's file
 
     return list(set(list_name_pres))
 
@@ -95,7 +95,7 @@ def lowerClean(inputFile):    # Function that converts the text into lowercase i
         content = file.read()
         output_file.write(content.lower()) # Writes the contents of a file in speeches to a file in cleaned in lowercase
 
-    # Security close of file
+
     file.close()
     output_file.close()
 
@@ -115,7 +115,7 @@ def clearFile(inputFile): # Function that moves a text removed from accents and 
     with open(path_file, 'r', encoding='utf-8') as file:
         text = file.read()
 
-    clearText = cleanText(text) # Call the sub-function for clean the text
+    clearText = cleanText(text)  #Cleans the text
 
     with open(path_file, 'w', encoding='utf-8') as file:
         file.write(clearText) # Write the clean text
@@ -130,8 +130,8 @@ def cleanText(text): # Function that removes from a text any accents and punctua
     :return: The functions returns the string but without accents, punctuations
 
     """
-    dicReplace = {'é':'e', 'à':'a', 'è':'e', 'ç':'c', 'ê': 'e', 'ë': 'e', 'ù':'u', 'â':'a', '\n' : ' ', 'ô': 'o', 'î' : 'i', 'û' : 'u'} # Dictionary of values to be changed
-    punctuation = [',',';','-','!','?','\'','.',':','"','`'] # List of punctuation to be change
+    dicReplace = {'é':'e', 'à':'a', 'è':'e', 'ç':'c', 'ê': 'e', 'ë': 'e', 'ù':'u', 'â':'a', '\n' : ' ', 'ô': 'o', 'î' : 'i', 'û' : 'u'}
+    punctuation = [',',';','-','!','?','\'','.',':','"','`']
 
     for character in punctuation: # Replace of ponctuation
         text = text.replace(character,' ')
@@ -151,8 +151,8 @@ def cleanText_with_dot(text): # Function that removes from a text any accents an
     """
 
     dicReplace = {'é': 'e', 'à': 'a', 'è': 'e', 'ç': 'c', 'ê': 'e', 'ë': 'e', 'ù': 'u', 'â': 'a', '\n': ' ', 'ô': 'o',
-                  'î': 'i', 'û': 'u'}  # Dictionary of values to be changed
-    punctuation = [',', ';', '-', '!', '?', '\'', ':', '"', '`']  # List of punctuation to be change
+                  'î': 'i', 'û': 'u'}
+    punctuation = [',', ';', '-', '!', '?', '\'', ':', '"', '`']
 
     for character in punctuation:  # Replace of ponctuation
         text = text.replace(character, ' ')
@@ -170,7 +170,7 @@ def path_cleaned_file(inputFile): # Function that gives to a cleaned file its pa
     :return: the functions returns the path of a file in the folder cleaned.
 
     """
-    path_cleaned_file = "./cleaned/{}".format(inputFile)
+    path_cleaned_file = "./cleaned/{}".format(inputFile)            #Create the path in the cleaned folder
     return path_cleaned_file
 
 def path_speeches_file(inputFile): # Function that gives to a speeches file its path
@@ -181,5 +181,5 @@ def path_speeches_file(inputFile): # Function that gives to a speeches file its 
     :return: the function returns the path of a file in the folder speeches.
 
     """
-    path_input_file = "./speeches/{}".format(inputFile)
+    path_input_file = "./speeches/{}".format(inputFile)     #Create the path in the speeches folder
     return path_input_file

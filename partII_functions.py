@@ -1,4 +1,3 @@
-
 """
 
 pychatbot-MASSE-LOESCH_Int2, Evan MASSE, Thomas LOESCH.
@@ -6,7 +5,6 @@ pychatbot-MASSE-LOESCH_Int2, Evan MASSE, Thomas LOESCH.
 This file contains all the functions asked in part II.
 
 """
-
 
 from tf_idf_function import *
 from base_function import *
@@ -23,10 +21,9 @@ def question_tokenization(question):
 
     content = question.lower()
     content = cleanText(content)
-    mylist = content.split(" ")
+    mylist = content.split(" ")  # Transformation into a list
 
-
-    for i in range(mylist.count("")):  # Remove all the "" in the list
+    for i in range(mylist.count("")):  # Removing all the ""
         mylist.remove("")
 
     return mylist
@@ -46,11 +43,10 @@ def question_words_corpus(question):
 
     words_in_question = list(set(question_tokenization(question)))
 
-    return list(set(words_corpus) & set(words_in_question))
+    return list(set(words_corpus) & set(words_in_question))  # Returning the intersection between the two sets
 
 
 def question_TF_IDF(question):
-
     """
     Function that returns the TF-IDF vector of the question
 
@@ -63,18 +59,17 @@ def question_TF_IDF(question):
     IDF = score_IDF("./cleaned")
     TF_IDF = {}
 
-    for value in list_word_question:
+    for value in list_word_question:  # Suppression of the words that are not in the corpus
         if value not in list(IDF.keys()):
             del TF[value]
 
-    for value1, item1 in TF.items():
+    for value1, item1 in TF.items():  # Calculating the TF-IDF score of each word
         TF_IDF[value1] = item1 * IDF[value1]
 
     return TF_IDF
 
 
 def scalar(vectA, vectB):
-
     """
     Function that calculates the scalar product of two vectors
 
@@ -87,12 +82,11 @@ def scalar(vectA, vectB):
     n = len(vectA)
     scal = 0
     for i in range(n):
-        scal += (vectA[i] * vectB[i])
+        scal += (vectA[i] * vectB[i])  # Calculating the scalar product
     return scal
 
 
 def norm(vectA: list):
-
     """
     Function that calculates the norm of a vector
 
@@ -103,12 +97,11 @@ def norm(vectA: list):
     n = len(vectA)
     norm = 0
     for i in range(n):
-        norm += vectA[i] ** 2
+        norm += vectA[i] ** 2  # Calculating the norm
     return sqrt(norm)
 
 
 def similarity(vectA, vectB):
-
     """
 
     Function that calculates the similarity between two vectors
@@ -121,7 +114,7 @@ def similarity(vectA, vectB):
     try:
         simi = scalar(vectA, vectB) / (norm(vectA) * norm(vectB))
     except:
-        simi = 0  #In the case where there is a division by zero
+        simi = 0  # In the case where there is a division by zero
     return simi
 
 
@@ -138,7 +131,6 @@ def most_relevant_doc(matrix_TD_IDF, question_TF_IDF, files_name):
 
     """
 
-
     IDF = score_IDF('./cleaned')
     index = 0
     similar_quantity = -1
@@ -152,36 +144,37 @@ def most_relevant_doc(matrix_TD_IDF, question_TF_IDF, files_name):
             TF = score_TF(content)
             list_of_word_document = list(TF.keys())
 
-            for word in list(question_TF_IDF.keys()):
+            for word in list(question_TF_IDF.keys()):  # Calculating the document vector
                 if word in list_of_word_document:
                     document_vector.append(TF[word] * IDF[word])
                 else:
                     document_vector.append(0)
 
-            if similar_quantity < similarity(list(question_TF_IDF.values()), document_vector):
+            if similar_quantity < similarity(list(question_TF_IDF.values()),
+                                             document_vector):  # Finding the most relevant document
                 similar_quantity = similarity(list(question_TF_IDF.values()), document_vector)
                 name_document = file
 
     return name_document
 
 
-##QUESTION 6 and 7##
-
 def word_highest_TF_IDF_question(question):
     """
     Function that returns the word with the highest score TF-IDF in the question
 
-    :param question: Question aksed by the user
+    :param question: Question asked by the user
     :return: If the TF-IDF vector of the question is empty, then it returns None. Otherwise, it returns
     the word with the highest score TF-IDF in the question
     """
 
     dict_TF_IDF_question = question_TF_IDF(question)
     if dict_TF_IDF_question != {}:
-        max_value_word = max(dict_TF_IDF_question, key=dict_TF_IDF_question.get)
+        max_value_word = max(dict_TF_IDF_question,
+                             key=dict_TF_IDF_question.get)  # Allows us to get the key with the highest value
         return max_value_word
     else:
         return None
+
 
 def sentence_word_highest_TF_IDF(question):
     """
@@ -192,8 +185,6 @@ def sentence_word_highest_TF_IDF(question):
     :return: the sentence in which there is the word with the highest TF-IDF in the question in the most relevant document
 
     """
-
-
 
     word_highest_TF_IDF = word_highest_TF_IDF_question(question)
 
@@ -220,18 +211,19 @@ def sentence_word_highest_TF_IDF(question):
             phrases = cleanText_with_dot(content).lower().split('.')
 
             for phrase in phrases:
-                index += 1      #Locate the index of the sentence
+                index += 1  # Locate the index of the sentence
                 if word_highest_TF_IDF in phrase.split():
                     in_the_text = True
                     break
 
-            phrase_containing_word = content.split(".")[index]  #Get the sentence
+            phrase_containing_word = content.split(".")[index]  # Get the sentence
 
             phrase_containing_word = phrase_containing_word.replace('-', '')
             phrase_containing_word = phrase_containing_word.replace('\n', '')
 
             if in_the_text:
-                if question.split(" ")[0] in list(question_formulation.keys()):     #If the question begins with one of the keys of the dictionary question_formulation
+                if question.split(" ")[0] in list(
+                        question_formulation.keys()):  # If the question begins with one of the keys of the dictionary question_formulation
                     return question_formulation[question.split(" ")[0]] + phrase_containing_word.lstrip("- \t\n") + "."
                 else:
                     return phrase_containing_word.lstrip("- \t\n") + "."
