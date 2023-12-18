@@ -2,7 +2,7 @@
 
 # Terminal Command Interface for Text Analysis
 
-This repository contains a Python script that provides a terminal-based interface for various text analysis functionalities. The script allows users to analyze text data related to presidential speeches. Below are the available functionalities and their corresponding commands:
+This repository contains a Python script that provides a terminal-based interface for various text analysis functionalities. The script allows users to analyze text data related to presidential speeches. Below are the available functionalities and their corresponding commands that can be used by running the main.py file:
 
 ### Functionalities:
 
