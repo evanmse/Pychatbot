@@ -214,28 +214,41 @@ def terminal():
                     print()
                     question = input("Enter a question : ") 
                     print("This is your tokenization : ", question_tokenization(question))
+                    print()
                 elif dir == "question_words_corpus":
                     print()
                     question = input("Enter a question : ")
                     print("This is the terms that intersect : ",question_words_corpus(question))
+                    print()
                 elif dir == "question_TF_IDF":
                     print()
                     question = input("Enter a question : ")
-                    print("This is the TF IDF of the question :", question_TF_IDF(question))
+                    print("This is the TF IDF of the question :")
+                    print(question_TF_IDF(question))
+                    print()
                 elif dir == "most_relevant_doc":
                     print()
                     question = input("Enter a question : ")
                     print("This is the most similar document with the question :", most_relevant_doc(matrix_TD_IDF('./cleaned'),
                                               question_TF_IDF(question), list_of_files('./cleaned', 'txt')))
+                    print()
                 elif dir == "word_highest_TF_IDF_question":
                     print()
                     question = input("Enter a question : ")
-                    print("This is the word with the highest TF-IDF score in the question :", word_highest_TF_IDF_question(question))
+
+                    if word_highest_TF_IDF_question(question) is None:
+                        print("There are no words in the question that are in the corpus.")
+                    else:
+                        print("This is the word with the highest TF-IDF score in the question :", word_highest_TF_IDF_question(question))
+
+                    print()
                 elif dir == "sentence_word_highest_TF_IDF":
                     print()
                     question = input("Enter a question : ")
-                    print("This is sentence containing the word with the highest TF-IDF score :", sentence_word_highest_TF_IDF(question)) 
+                    print(sentence_word_highest_TF_IDF(question))
+                    print()
                 elif dir == "exit":
+                        print()
                         print("Exiting the Terminal. Goodbye!")
                         section()
                         break
@@ -252,10 +265,10 @@ def chatbot():
     ################################################################## 
 """)
     while True:
-        question = str(input("Chatbot : "))
+        question = str(input("Question : "))
         if question == "exit":
             section()
             break
         else:
-            print(sentence_word_highest_TF_IDF(question))
+            print("Chatbot :", sentence_word_highest_TF_IDF(question))
     return

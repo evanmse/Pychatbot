@@ -77,6 +77,12 @@ def word_most_repeated_Chirac():  # Functionality that gives the most repeated w
 
     dictionnary_scoreTF_word = score_TF(content)
 
+    unimportant_words = min_word_TD_IDF()
+
+    for word in list(dictionnary_scoreTF_word.keys()):
+        if word in unimportant_words:
+            del dictionnary_scoreTF_word[word]
+
     maxi = max(list(dictionnary_scoreTF_word.values()))
 
     for key in list(dictionnary_scoreTF_word.keys()):

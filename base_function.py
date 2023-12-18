@@ -78,6 +78,7 @@ def cleanText(text): # Sub-Function that clean a text
     return text
 
 def cleanText_with_dot(text):
+
     dicReplace = {'é': 'e', 'à': 'a', 'è': 'e', 'ç': 'c', 'ê': 'e', 'ë': 'e', 'ù': 'u', 'â': 'a', '\n': ' ', 'ô': 'o',
                   'î': 'i', 'û': 'u'}  # Dictionary of values to be changed
     punctuation = [',', ';', '-', '!', '?', '\'', ':', '"', '`']  # List of punctuation to be change

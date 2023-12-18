@@ -12,6 +12,7 @@ def question_tokenization(question):
     content = cleanText(content)
     mylist = content.split(" ")
 
+
     for i in range(mylist.count("")):  # Remove all the "" in the list
         mylist.remove("")
 
@@ -118,12 +119,16 @@ def word_highest_TF_IDF_question(question):
         return None
 
 def sentence_word_highest_TF_IDF(question):
+    """
+    Function that returns the sentence in which there is the word with the highest TF-IDF in the question in the most relevant document
+
+    """
 
 
     word_highest_TF_IDF = word_highest_TF_IDF_question(question)
 
     if word_highest_TF_IDF is None:
-        return "There are no words in the question that are in the corpus. Please try a different input. "
+        return "There are no words in the question that are in the corpus."
     else:
 
         relevant_document = most_relevant_doc(matrix_TD_IDF('./cleaned'),
@@ -152,11 +157,13 @@ def sentence_word_highest_TF_IDF(question):
 
             phrase_containing_word = content.split(".")[index]
 
+            phrase_containing_word = phrase_containing_word.replace('-', '')
+            phrase_containing_word = phrase_containing_word.replace('\n', '')
+
             if in_the_text:
                 if question.split(" ")[0] in list(question_formulation.keys()):
                     return question_formulation[question.split(" ")[0]] + phrase_containing_word.lstrip("- \t\n") + "."
                 else:
                     return phrase_containing_word.lstrip("- \t\n") + "."
             else:
-                return "The word with the highest TF-IDF score is not in the most relevant document. Please try a different input"
-
+                return "The word with the highest TF-IDF score is not in the most relevant document."
