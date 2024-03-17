@@ -1,4 +1,4 @@
-# 🐍 Pychatbot MASSE LOESCH Int2
+# 🤖 Pychatbot 🐍
 
 # Terminal Command Interface for Text Analysis
 
